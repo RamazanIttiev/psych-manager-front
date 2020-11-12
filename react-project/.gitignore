@@ -1,8 +1,6 @@
-<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/AdminLTE-3.0.5
 /node_modules
 /.pnp
 .pnp.js
@@ -23,9 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-=======
-/node_modules/
-.DS_Store
-/.vs/
-/build/
->>>>>>> 3db5aba4cf58236e148b32ca0a98f018dad738de
