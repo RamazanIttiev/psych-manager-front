@@ -1,0 +1,4 @@
+/node_modules
+/public
+/resources/vg
+serviceWorker.js
