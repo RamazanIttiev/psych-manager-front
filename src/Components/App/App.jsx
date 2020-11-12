@@ -1,11 +1,14 @@
 import React from 'react';
 import './App';
-import Header from '../Header/Header.jsx'
+import { BrowserRouter } from 'react-router-dom';
+import RootRouter from '../RootRouter/RootRouter.jsx';
 
 function App() {
   return (
     <div>
-      <Header/>
+      <BrowserRouter>
+        <RootRouter/>
+      </BrowserRouter>
     </div>
   );
 }
