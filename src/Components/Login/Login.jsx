@@ -1,21 +1,52 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 import { Link } from 'react-router-dom';
 
 class Login extends Component {
+  //   state = {
+  //   fullName: null,
+  //   email: null,
+  //   password: null,
+  //   confirmation: null,
+  // }
+
+  handleSubmit = e => {
+    e.preventDefault();
+
+    const data = {
+      fullName: this.fullName,
+      email: this.email,
+      password: this.password,
+      password_confirmation: this.confirmation,
+    }
+
+    Axios.post('http://127.0.0.1:8000/api/v1/auth', data)
+      .then(
+        res => {
+          console.log('fine')
+        }
+    ).catch(
+      err => {
+        console.log('error')
+        
+      }
+    )
+  }
   render() {
     return (
       <div class="login-page">   
         <div className="login-box">
           <div className="login-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href="../../index2.html"><b>Wellcome</b></a>
           </div>
           {/* /.login-logo */}
           <div className="card">
             <div className="card-body login-card-body">
-              <p className="login-box-msg">Sign in to start your session</p>
-              <form action="../../index3.html" method="post">
+              <p className="login-box-msg">Sign in to start</p>
+              <form onSubmit={this.handleSubmit}>
                 <div className="input-group mb-3">
-                  <input type="email" className="form-control" placeholder="Email" />
+                  <input type="email" className="form-control" placeholder="Email"
+                      onChange={e => this.email = e.target.value}/>
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-envelope" />
@@ -23,13 +54,23 @@ class Login extends Component {
                   </div>
                 </div>
                 <div className="input-group mb-3">
-                  <input type="password" className="form-control" placeholder="Password" />
+                  <input type="password" className="form-control" placeholder="Password"
+                      onChange={e => this.password = e.target.value}/>
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-lock" />
                     </div>
                   </div>
                 </div>
+                 {/* <div className="input-group mb-3">
+                 <input type="password" className="form-control" placeholder="Retype password"
+                      onChange={e => this.confirmation = e.target.value}/>
+                  <div className="input-group-append">
+                    <div className="input-group-text">
+                      <span className="fas fa-lock" />
+                    </div>
+                  </div>
+                </div> */}
                 <div className="row">
                   <div className="col-8">
                     <div className="icheck-primary">

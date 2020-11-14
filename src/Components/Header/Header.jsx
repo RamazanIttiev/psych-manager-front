@@ -17,7 +17,7 @@ const Header = () => {
           <ul className="navbar-nav ml-auto">
             {/* Messages Dropdown Menu */}
             <li className="nav-item">
-              <Link to='/login'>
+              <Link to='/'>
                 <i className="nav-link nav-icon fa fa-sign-out-alt" />
               </Link>
             </li>

@@ -1,7 +1,11 @@
+import Axios from 'axios';
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 export default class Register extends Component {
+
+
+
   render() {
     return (
       <div className="hold-transition register-page">
@@ -12,9 +16,10 @@ export default class Register extends Component {
           <div className="card">
             <div className="card-body register-card-body">
               <p className="login-box-msg">Register a new membership</p>
-              <form action="../../index.html" method="post">
+              <form onSubmit={this.handleSubmit}>
                 <div className="input-group mb-3">
-                  <input type="text" className="form-control" placeholder="Full name" />
+                  <input type="text" className="form-control" placeholder="Full name"
+                      onChange={e => this.fullName = e.target.value}/>
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-user" />
@@ -22,7 +27,8 @@ export default class Register extends Component {
                   </div>
                 </div>
                 <div className="input-group mb-3">
-                  <input type="email" className="form-control" placeholder="Email" />
+                  <input type="email" className="form-control" placeholder="Email"
+                      onChange={e => this.email = e.target.value}/>
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-envelope" />
@@ -30,7 +36,8 @@ export default class Register extends Component {
                   </div>
                 </div>
                 <div className="input-group mb-3">
-                  <input type="password" className="form-control" placeholder="Password" />
+                  <input type="password" className="form-control" placeholder="Password"
+                      onChange={e => this.password = e.target.value}/>
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-lock" />
@@ -38,7 +45,8 @@ export default class Register extends Component {
                   </div>
                 </div>
                 <div className="input-group mb-3">
-                  <input type="password" className="form-control" placeholder="Retype password" />
+                  <input type="password" className="form-control" placeholder="Retype password"
+                      onChange={e => this.confirmation = e.target.value}/>
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-lock" />
@@ -72,7 +80,7 @@ export default class Register extends Component {
                   Sign up using Google+
                 </a>
               </div>
-              <Link to='/login' className="text-center">I already have a membership</Link>
+              <Link to='/' className="text-center">I already have a membership</Link>
             </div>
             {/* /.form-box */}
           </div>{/* /.card */}

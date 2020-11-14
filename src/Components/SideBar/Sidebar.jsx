@@ -11,10 +11,10 @@ class Sidebar extends React.Component {
             {/* Sidebar user panel (optional) */}
             <div className="user-panel mt-3 pb-3 mb-3 d-flex">
               <div className="image">
-                <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User Image" />
+                <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" />
               </div>
               <div className="info">
-                <a href="#" className="d-block">{this.props.firstName} {this.props.secondName}</a>
+                <a  className="d-block">{this.props.firstName} {this.props.secondName}</a>
               </div>
             </div>
             {/* Sidebar Menu */}
@@ -23,7 +23,7 @@ class Sidebar extends React.Component {
                 {/* Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library */}
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <a  className="nav-link">
                     <i className="nav-icon fas fa-edit" />
                     <p>
                       Sessions
