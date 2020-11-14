@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 
 const Header = () => {
     return (
@@ -17,9 +17,9 @@ const Header = () => {
           <ul className="navbar-nav ml-auto">
             {/* Messages Dropdown Menu */}
             <li className="nav-item">
-              <Link to='/'>
+              <NavLink to='/'>
                 <i className="nav-link nav-icon fa fa-sign-out-alt" />
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>

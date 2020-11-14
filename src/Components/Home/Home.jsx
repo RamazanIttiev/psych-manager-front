@@ -1,6 +1,17 @@
+import Header from '../Header/Header.jsx'
+import Sidebar from '../SideBar/Sidebar.jsx'
+import Footer from '../Footer/Footer.jsx'
+
 const Home = () => {
   return (
-    <h1>You are not logged in</h1>
+    <>
+      <Header />
+      <Sidebar />
+        <div class="content-wrapper">
+          <h1>Какая то инфа</h1>
+        </div>
+      <Footer/>
+    </>
   )
 }
 

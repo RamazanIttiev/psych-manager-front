@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
+import Content from '../Content/Content';
 
 class Login extends Component {
   //   state = {
@@ -34,6 +35,8 @@ class Login extends Component {
   }
   render() {
     return (
+
+      
       <div class="login-page">   
         <div className="login-box">
           <div className="login-logo">
@@ -107,7 +110,7 @@ class Login extends Component {
             {/* /.login-card-body */}
           </div>
         </div>
-    </div>
+        </div>
     )
   }
 }
