@@ -1,16 +1,9 @@
-import Axios from 'axios';
 import React, { Component } from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import Content from '../Content/Content';
+import { NavLink } from 'react-router-dom'
 
-export default class Register extends Component {
-
-
-
+class Register extends Component {
   render() {
     return (
-
-      
       <div className="hold-transition register-page">
         <div className="register-box">
           <div className="register-logo">
@@ -92,3 +85,5 @@ export default class Register extends Component {
     )
   }
 }
+
+export default Register

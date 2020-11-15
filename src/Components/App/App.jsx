@@ -5,8 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
 import Session from '../Session/Session.jsx';
-import Home from '../Home/Home.jsx';
-import Layout from '../Layout/Layout';
+import LoggedIN from '../LoggedIN/LoggedIN.jsx';
 
 
 const App = () => {
@@ -23,7 +22,7 @@ const App = () => {
           <Session/>
         </Route>
         <Route exact path='/home'>
-          <Home/>
+          <LoggedIN/>
         </Route>
       </Switch>
     </BrowserRouter>
