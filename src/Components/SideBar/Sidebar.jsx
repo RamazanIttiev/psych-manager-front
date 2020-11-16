@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 class Sidebar extends React.Component {
   render() {
@@ -14,29 +15,40 @@ class Sidebar extends React.Component {
                 <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" />
               </div>
               <div className="info">
-                <a  className="d-block">{this.props.firstName} {this.props.secondName}</a>
+                <a className="d-block">
+                  {this.props.firstName} {this.props.secondName}
+                </a>
               </div>
             </div>
             {/* Sidebar Menu */}
             <nav className="mt-2">
-               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+              <ul
+                class="nav nav-pills nav-sidebar flex-column"
+                data-widget="treeview"
+                role="menu"
+                data-accordion="false"
+              >
                 {/* Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library */}
                 <li className="nav-item">
-                  <a  className="nav-link">
+                  <NavLink to="/patients" className="nav-link">
+                    <i className="nav-icon fas fa-user" />
+                    <p>Patients</p>
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/sessions" className="nav-link">
                     <i className="nav-icon fas fa-edit" />
-                    <p>
-                      Sessions
-                  </p>
-                  </a>
+                    <p>Sessions</p>
+                  </NavLink>
                 </li>
               </ul>
             </nav>
           </div>
         </aside>
       </>
-    )
+    );
   }
 }
 
-export default Sidebar
+export default Sidebar;

@@ -6,16 +6,13 @@ import reportWebVitals from './reportWebVitals';
 import Axios from 'axios';
 
 Axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1/';
-Axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token')
+Axios.defaults.headers.common['Authorization'] = 'Bearer ' + localStorage.getItem('token');
 
 ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

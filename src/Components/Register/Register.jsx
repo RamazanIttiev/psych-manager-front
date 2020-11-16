@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import React, { Component } from 'react';
+import { NavLink } from 'react-router-dom';
 
 class Register extends Component {
   render() {
@@ -7,15 +7,21 @@ class Register extends Component {
       <div className="hold-transition register-page">
         <div className="register-box">
           <div className="register-logo">
-            <a href="../../index2.html"><b>Admin</b>LTE</a>
+            <a href="../../index2.html">
+              <b>Admin</b>LTE
+            </a>
           </div>
           <div className="card">
             <div className="card-body register-card-body">
               <p className="login-box-msg">Register a new membership</p>
               <form onSubmit={this.handleSubmit}>
                 <div className="input-group mb-3">
-                  <input type="text" className="form-control" placeholder="Full name"
-                      onChange={e => this.fullName = e.target.value}/>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Full name"
+                    onChange={e => (this.fullName = e.target.value)}
+                  />
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-user" />
@@ -23,8 +29,12 @@ class Register extends Component {
                   </div>
                 </div>
                 <div className="input-group mb-3">
-                  <input type="email" className="form-control" placeholder="Email"
-                      onChange={e => this.email = e.target.value}/>
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Email"
+                    onChange={e => (this.email = e.target.value)}
+                  />
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-envelope" />
@@ -32,8 +42,12 @@ class Register extends Component {
                   </div>
                 </div>
                 <div className="input-group mb-3">
-                  <input type="password" className="form-control" placeholder="Password"
-                      onChange={e => this.password = e.target.value}/>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Password"
+                    onChange={e => (this.password = e.target.value)}
+                  />
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-lock" />
@@ -41,8 +55,12 @@ class Register extends Component {
                   </div>
                 </div>
                 <div className="input-group mb-3">
-                  <input type="password" className="form-control" placeholder="Retype password"
-                      onChange={e => this.confirmation = e.target.value}/>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Retype password"
+                    onChange={e => (this.confirmation = e.target.value)}
+                  />
                   <div className="input-group-append">
                     <div className="input-group-text">
                       <span className="fas fa-lock" />
@@ -60,30 +78,24 @@ class Register extends Component {
                   </div>
                   {/* /.col */}
                   <div className="col-4">
-                    <button type="submit" className="btn btn-primary btn-block">Register</button>
+                    <button type="submit" className="btn btn-primary btn-block">
+                      Register
+                    </button>
                   </div>
                   {/* /.col */}
                 </div>
               </form>
-              <div className="social-auth-links text-center">
-                <p>- OR -</p>
-                <a href="#" className="btn btn-block btn-primary">
-                  <i className="fab fa-facebook mr-2" />
-                  Sign up using Facebook
-                </a>
-                <a href="#" className="btn btn-block btn-danger">
-                  <i className="fab fa-google-plus mr-2" />
-                  Sign up using Google+
-                </a>
-              </div>
-              <NavLink to='/' className="text-center">I already have a membership</NavLink>
+              <NavLink to="/" className="text-center">
+                I already have a membership
+              </NavLink>
             </div>
             {/* /.form-box */}
-          </div>{/* /.card */}
+          </div>
+          {/* /.card */}
         </div>
-        </div>
-    )
+      </div>
+    );
   }
 }
 
-export default Register
+export default Register;

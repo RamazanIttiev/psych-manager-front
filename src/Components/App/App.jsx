@@ -7,26 +7,28 @@ import Register from '../Register/Register.jsx';
 import Session from '../Session/Session.jsx';
 import LoggedIN from '../LoggedIN/LoggedIN.jsx';
 
-
 const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/'>
-          <Login/>
+        <Route exact path="/">
+          <Login />
         </Route>
-        <Route exact path='/register'>
-          <Register/>
+        <Route exact path="/register">
+          <Register />
         </Route>
-        <Route exact path='/session'>
-          <Session/>
+        <Route exact path="/sessions">
+          <Session />
         </Route>
-        <Route exact path='/home'>
-          <LoggedIN/>
+        <Route exact path="/patients">
+          <Session />
+        </Route>
+        <Route exact path="/home">
+          <LoggedIN />
         </Route>
       </Switch>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

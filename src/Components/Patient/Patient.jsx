@@ -1,9 +1,6 @@
 import React from 'react';
-import Header from '../Header/Header.jsx';
-import Sidebar from '../SideBar/Sidebar.jsx';
-import Footer from '../Footer/Footer.jsx';
 
-const Session = () => {
+const SessionTable = () => {
   return (
     <>
       <Header />
@@ -113,4 +110,4 @@ const Session = () => {
   );
 };
 
-export default Session;
+export default SessionTable;
