@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="12a0d1d6-0469-43bf-9a13-a735c286b5ec" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/public/manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/public/robots.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/src/App.test.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/src/Components/Sidebar.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/src/index.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/src/serviceWorker.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/react-project/src/setupTests.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/App/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/App/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Header/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Header/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Session/Session.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Session/Session.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/SessionTable/SessionTable.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/SessionTable/SessionTable.jsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
+  </component>
+  <component name="ProjectId" id="1k91s3pOGp5nTEIVseBL1JMBHsD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="12a0d1d6-0469-43bf-9a13-a735c286b5ec" name="Default Changelist" comment="" />
+      <created>1605098199201</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605098199201</updated>
+      <workItem from="1605098201266" duration="501000" />
+      <workItem from="1605382049692" duration="4449000" />
+    </task>
+    <task id="LOCAL-00001" summary="Task: sidebar implementation.">
+      <created>1605098355528</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605098355528</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Task: sidebar implementation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Task: sidebar implementation." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="311" y="51" key="CommitChangelistDialog2" timestamp="1605098355207">
+      <screen x="48" y="23" width="1392" height="877" />
+    </state>
+    <state x="311" y="51" key="CommitChangelistDialog2/48.23.1392.877@48.23.1392.877" timestamp="1605098355207" />
+    <state width="1351" height="217" key="GridCell.Tab.0.bottom" timestamp="1605382201182">
+      <screen x="47" y="23" width="1393" height="877" />
+    </state>
+    <state width="1351" height="217" key="GridCell.Tab.0.bottom/47.23.1393.877@47.23.1393.877" timestamp="1605382201182" />
+    <state width="1351" height="217" key="GridCell.Tab.0.center" timestamp="1605382201181">
+      <screen x="47" y="23" width="1393" height="877" />
+    </state>
+    <state width="1351" height="217" key="GridCell.Tab.0.center/47.23.1393.877@47.23.1393.877" timestamp="1605382201181" />
+    <state width="1351" height="217" key="GridCell.Tab.0.left" timestamp="1605382201180">
+      <screen x="47" y="23" width="1393" height="877" />
+    </state>
+    <state width="1351" height="217" key="GridCell.Tab.0.left/47.23.1393.877@47.23.1393.877" timestamp="1605382201180" />
+    <state width="1351" height="217" key="GridCell.Tab.0.right" timestamp="1605382201182">
+      <screen x="47" y="23" width="1393" height="877" />
+    </state>
+    <state width="1351" height="217" key="GridCell.Tab.0.right/47.23.1393.877@47.23.1393.877" timestamp="1605382201182" />
+    <state x="353" y="206" key="Vcs.Push.Dialog.v2" timestamp="1605098370607">
+      <screen x="48" y="23" width="1392" height="877" />
+    </state>
+    <state x="353" y="206" key="Vcs.Push.Dialog.v2/48.23.1392.877@48.23.1392.877" timestamp="1605098370607" />
+  </component>
+</project>

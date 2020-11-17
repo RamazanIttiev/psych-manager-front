@@ -1,24 +1,40 @@
 import React from 'react';
-import Header from '../Header/Header';
-import Session from '../Session/Session';
-import SessionTable from '../SessionTable/SessionTable';
-import SideBar from '../SideBar/SideBar';
+import './App';
+import { BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Login from '../Login/Login.jsx';
+import Register from '../Register/Register.jsx';
+import Session from '../Session/Session.jsx';
+import Clients from '../Clients/Clients.jsx';
+import Home from '../Home/Home.jsx';
 
-const App = () => {
-  return (
-    <div className="wrapper skin-blue layout-top-nav">
-      <Header />
-      <SideBar />
-      <div className="content-wrapper"  style={{marginTop: '30px'}}>
-        <section className="content">
-            <div className="container-fluid">
-                <Session />
-                <SessionTable />
-            </div>
-        </section>
-      </div>
-    </div>
-  );
-};
+class App extends React.Component {
+    render() {
+        return (
+            <BrowserRouter>
+                <Switch>
+                    <Route exact path="/">
+                        <Home />
+                    </Route>
+                    <Route exact path="/login">
+                        <Login />
+                    </Route>
+                    <Route exact path="/register">
+                        <Register />
+                    </Route>
+                    <Route exact path="/sessions">
+                        <Session />
+                    </Route>
+                    <Route exact path="/clients">
+                        <Clients />
+                    </Route>
+                    <Route exact path="/home">
+                        <Home />
+                    </Route>
+                </Switch>
+            </BrowserRouter>
+        );
+    }
+}
 
 export default App;
