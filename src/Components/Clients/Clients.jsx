@@ -1,6 +1,9 @@
 import React from 'react';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import Sidebar from '../SideBar/Sidebar';
 
-const SessionTable = () => {
+const Clients = () => {
   return (
     <>
       <Header />
@@ -110,4 +113,4 @@ const SessionTable = () => {
   );
 };
 
-export default SessionTable;
+export default Clients;

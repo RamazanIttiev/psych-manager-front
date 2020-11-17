@@ -5,30 +5,36 @@ import { Route, Switch } from 'react-router-dom';
 import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
 import Session from '../Session/Session.jsx';
-import LoggedIN from '../LoggedIN/LoggedIN.jsx';
+import Clients from '../Clients/Clients.jsx';
+import Home from '../Home/Home.jsx';
 
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <Login />
-        </Route>
-        <Route exact path="/register">
-          <Register />
-        </Route>
-        <Route exact path="/sessions">
-          <Session />
-        </Route>
-        <Route exact path="/patients">
-          <Session />
-        </Route>
-        <Route exact path="/home">
-          <LoggedIN />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
-};
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/register">
+            <Register />
+          </Route>
+          <Route exact path="/sessions">
+            <Session />
+          </Route>
+          <Route exact path="/clients">
+            <Clients />
+          </Route>
+          <Route exact path="/home">
+            <Home />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+}
 
 export default App;

@@ -15,9 +15,9 @@ class Sidebar extends React.Component {
                 <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" />
               </div>
               <div className="info">
-                <a className="d-block">
-                  {this.props.firstName} {this.props.secondName}
-                </a>
+                <NavLink to="/" className="d-block">
+                  Ramazan Ittiev
+                </NavLink>
               </div>
             </div>
             {/* Sidebar Menu */}
@@ -31,15 +31,15 @@ class Sidebar extends React.Component {
                 {/* Add icons to the links using the .nav-icon class
               with font-awesome or any other icon font library */}
                 <li className="nav-item">
-                  <NavLink to="/patients" className="nav-link">
+                  <NavLink to="/clients" className="nav-link">
                     <i className="nav-icon fas fa-user" />
-                    <p>Patients</p>
+                    <p>Клиенты</p>
                   </NavLink>
                 </li>
                 <li className="nav-item">
                   <NavLink to="/sessions" className="nav-link">
                     <i className="nav-icon fas fa-edit" />
-                    <p>Sessions</p>
+                    <p>Сессии</p>
                   </NavLink>
                 </li>
               </ul>

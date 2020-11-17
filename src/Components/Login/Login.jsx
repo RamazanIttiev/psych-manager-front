@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 
 class Login extends Component {
+  state = {};
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -14,12 +16,18 @@ class Login extends Component {
     Axios.post('auth', data)
       .then(res => {
         localStorage.setItem('token', res.data.token);
+
+        this.setState({ auth: true });
       })
       .catch(err => {
         console.log('error');
       });
   };
   render() {
+    if (this.state.auth) {
+      return <Redirect to="/home" />;
+    }
+
     return (
       <div class="login-page">
         <div className="login-box">

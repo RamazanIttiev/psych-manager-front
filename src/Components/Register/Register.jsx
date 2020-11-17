@@ -85,7 +85,7 @@ class Register extends Component {
                   {/* /.col */}
                 </div>
               </form>
-              <NavLink to="/" className="text-center">
+              <NavLink to="/login" className="text-center">
                 I already have a membership
               </NavLink>
             </div>
