@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../Header/Header.jsx';
-import Sidebar from '../SideBar/Sidebar.jsx';
+import Sidebar from '../Sidebar/Sidebar.jsx';
 import Footer from '../Footer/Footer.jsx';
 
 const Session = () => {
