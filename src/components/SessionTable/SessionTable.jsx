@@ -8,6 +8,18 @@ const SessionTable = () => {
               </div>
               <div className="card-body">
                 <div className="row">
+                    <div className="col-2">
+                        <input type="text" className="form-control" placeholder="Имя"></input>
+                    </div>
+                    <div className="col-3">
+                        <input type="text" className="form-control" placeholder="Фамилия"></input>
+                    </div>
+                    <div className="col-3">
+                        <input type="text" className="form-control" placeholder="Телефон"></input>
+                    </div>
+                    <div className="col-3">
+                        <input type="text" className="form-control" placeholder="E-mail"></input>
+                    </div>
                   <div className="col-6">
                     <input type="text" className="form-control" placeholder="План на сессию"></input>
                   </div>
