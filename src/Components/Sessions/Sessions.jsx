@@ -1,9 +1,9 @@
 import React from 'react';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
+import Header from '../Header/Header.jsx';
 import SideBar from '../SideBar/SideBar.jsx';
+import Footer from '../Footer/Footer.jsx';
 
-const Clients = () => {
+const Session = () => {
   return (
     <>
       <Header />
@@ -112,5 +112,4 @@ const Clients = () => {
     </>
   );
 };
-
-export default Clients;
+export default Session;

@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
-import Session from '../Session/Session.jsx';
+import Session from '../Sessions/Sessions.jsx';
 import Clients from '../Clients/Clients.jsx';
 import Home from '../Home/Home.jsx';
 
