@@ -1,13 +1,12 @@
 import React from 'react';
 import Header from '../Header/Header.jsx';
-import Sidebar from '../SideBar/Sidebar.jsx';
-import Footer from '../Footer/Footer.jsx';
+import SideBar from '../SideBar/SideBar.jsx';
 
 const Session = () => {
   return (
     <>
       <Header />
-      <Sidebar />
+      <SideBar />
       <div class="content-wrapper">
         <div className="card card-light">
           <div className="card-header">
@@ -108,7 +107,6 @@ const Session = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
