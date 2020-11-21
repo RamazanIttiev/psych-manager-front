@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header.jsx';
 import Footer from '../Footer/Footer.jsx';
-import Sidebar from "../SideBar/SideBar";
+import Sidebar from "../SideBar/Sidebar";
 
 class LoggedIN extends React.Component {
   render() {
