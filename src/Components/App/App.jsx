@@ -3,7 +3,7 @@ import './App';
 import { BrowserRouter, Router } from 'react-router-dom';
 import RootRouter from '../RootRouter/RootRouter';
 import { Provider } from 'react-redux';
-import store from '../../Redux/Store/Store';
+import store from '../../Redux/Store/Store.js';
 
 class App extends React.Component {
   render() {

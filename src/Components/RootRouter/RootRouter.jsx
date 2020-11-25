@@ -25,9 +25,6 @@ class Router extends React.Component {
         <Route exact path="/clients">
           <Clients />
         </Route>
-        <Route exact path="/home">
-          <Home />
-        </Route>
       </Switch>
     );
   }
