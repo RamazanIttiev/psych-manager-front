@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../Header/Header';
-import SideBar from '../SideBar/SideBar';
+import Sidebar from '../Sidebar/Sidebar';
 
 const Clients = () => {
   return (
     <>
       <Header />
-      <SideBar />
+      <Sidebar />
       <div class="content-wrapper">
         <div className="card card-light">
           <div className="card-header">

@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from '../Header/Header.jsx';
-import SideBar from '../SideBar/SideBar.jsx';
+import Sidebar from '../Sidebar/Sidebar.jsx';
 
 class LoggedIN extends React.Component {
   render() {
     return (
       <>
         <Header />
-        <SideBar />
+        <Sidebar />
         <div class="content-wrapper">
           <h1>Wellcome</h1>
         </div>

@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../Header/Header.jsx';
-import SideBar from '../SideBar/SideBar.jsx';
+import Sidebar from '../Sidebar/Sidebar.jsx';
 
 const Session = () => {
   return (
     <>
       <Header />
-      <SideBar />
+      <Sidebar />
       <div class="content-wrapper">
         <div className="card card-light">
           <div className="card-header">
