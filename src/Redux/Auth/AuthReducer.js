@@ -1,6 +1,11 @@
 import { loginRequest, loginSuccess, loginFailure, loginData } from './AuthAction';
 
-const initialState = {};
+const initialState = {
+  isLoading: false,
+  email: '',
+  password: '',
+  error: '',
+};
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {

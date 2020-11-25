@@ -84,35 +84,41 @@ class Login extends Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//     isLoading: state.isLoading,
-//     email: state.email,
-//     password: state.password,
-//     error: state.error,
-//   };
-// };
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-
-//     // authThunk: () => dispatch(authThunk()),
-//   };
-// };
-export default connect(
-  state => ({
+const mapStateToProps = state => {
+  return {
     isLoading: state.isLoading,
     email: state.email,
     password: state.password,
     error: state.error,
-  }),
-  dispatch => ({
-    loginReducer: (email, password) => {
-      const payload = {
-        email,
-        password,
-      };
-      dispatch({ type: LOGIN_DATA, payload });
-    },
-  }),
-)(Login);
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    authThunk: () => dispatch(authThunk()),
+  };
+};
+// Если так прописываю, запрос приходит,
+// но данные из input не получается передать в data(который в authThunk)
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
+
+// А если так прописываю, то в paylod приходят данные которые прописаны в форме,
+// но не прихожит запрос
+
+// export default connect(
+//   state => ({
+//     isLoading: state.isLoading,
+//     email: state.email,
+//     password: state.password,
+//     error: state.error,
+//   }),
+//   dispatch => ({
+//     loginReducer: (email, password) => {
+//       const payload = {
+//         email,
+//         password,
+//       };
+//       dispatch({ type: LOGIN_DATA, payload });
+//     },
+//   }),
+// )(Login);
