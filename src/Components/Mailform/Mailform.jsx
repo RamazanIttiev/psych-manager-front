@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-/*import * as emailjs from 'emailjs-com';*/
+import * as emailjs from 'emailjs-com';
+
 class Form extends Component {
     constructor(props) {
         super(props);
@@ -42,22 +43,26 @@ class Form extends Component {
             "message": this.state.message,
         }
 
-        /*  var service_id = "default_service";
-          var template_id = "YOUR EMAJS TEMPLATEID";
-          emailjs.send(service_id,template_id,template_params,'YOUR EMAIJS USERID')
-          .then(function(response) {
-            alert('SUCCESS!');
-         }, function(err) {
-            console.log('FAILED...', err);
-         });*/
+        var service_id = "mail.ru";
+        var template_id = "template_2b3rg1z";
+        emailjs.send(service_id, template_id, template_params, 'user_VIvvxLyN9b2TXLcKkbCOI')
+            .then(function (response) {
+                alert('SUCCESS!');
+            }, function (err) {
+                console.log('FAILED...', err);
+            });
     };
     render() {
         return (
             <div>
-                Name:<input type="text" name="name" onChange={this.handleChangeName} />
-            Email:<input type="text" name="email" ref="email" onChange={this.handleChangeEmail} />
-            Phone:<input type="number" name="phone" ref="phone" onChange={this.handleChangePhone} />
-            Message:<input type="textarea" name="message" ref="message" onChange={this.handleChangeMessage} />
+                <form> Name:<input type="text" name="name" onChange={this.handleChangeName} />
+                </form>
+                <form>Email:<input type="text" name="email" ref="email" onChange={this.handleChangeEmail} />
+                </form>
+                <form>Phone:<input type="number" name="phone" ref="phone" onChange={this.handleChangePhone} />
+                </form>
+                <form>Message:<input type="textarea" name="message" ref="message" onChange={this.handleChangeMessage} />
+                </form>
                 <button type="submit" onClick={this.sendMail}>Send Email</button>
             </div>
         );
