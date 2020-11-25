@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as emailjs from 'emailjs-com';
+import './mailform.css';
 
 class Form extends Component {
     constructor(props) {
@@ -54,7 +55,7 @@ class Form extends Component {
     };
     render() {
         return (
-            <div>
+            <div className="form">
                 <form> Name:<input type="text" name="name" onChange={this.handleChangeName} />
                 </form>
                 <form>Email:<input type="text" name="email" ref="email" onChange={this.handleChangeEmail} />
