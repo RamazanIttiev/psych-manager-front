@@ -1,19 +1,30 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import authThunk, { loginData } from '../../Redux/Auth/AuthAction.js';
-import loginReducer from '../../Redux/Auth/AuthReducer.js';
-import { LOGIN_DATA } from '../../Redux/Auth/AuthTypes.js';
+import login from '../../Redux/Auth/AuthAction.js';
 
 class Login extends Component {
-  state = {
-    email: '',
-    password: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+  }
 
+  /**
+   * Из инпутов мы получаем данные, введенные пользователем, в локальный state
+   * и передаем его в action login (thunk)(AuthAction.js)
+   * эти данные попадают в login (аргумент data)
+   */
   onSubmit = e => {
     e.preventDefault();
-    this.props.loginReducer(this.state);
+    this.props.login(this.state);
+    console.log(this.props.login(this.state));
+  };
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
   };
 
   render() {
@@ -33,9 +44,12 @@ class Login extends Component {
                 <div className="input-group mb-3">
                   <input
                     type="email"
+                    name="email"
                     className="form-control"
                     placeholder="Email"
-                    onChange={e => this.setState({ email: e.target.value })}
+                    required
+                    value={this.state.email}
+                    onChange={this.handleChange}
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
@@ -46,9 +60,12 @@ class Login extends Component {
                 <div className="input-group mb-3">
                   <input
                     type="password"
+                    name="password"
                     className="form-control"
                     placeholder="Password"
-                    onChange={e => this.setState({ password: e.target.value })}
+                    required
+                    value={this.state.password}
+                    onChange={this.handleChange}
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
@@ -87,38 +104,11 @@ class Login extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
-    email: state.email,
-    password: state.password,
-    error: state.error,
+    isLogged: state.isLogged,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    authThunk: () => dispatch(authThunk()),
-  };
+const mapDispatchToProps = {
+  login,
 };
-// Если так прописываю, запрос приходит,
-// но данные из input не получается передать в data(который в authThunk)
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
-
-// А если так прописываю, то в paylod приходят данные которые прописаны в форме,
-// но не прихожит запрос
-
-// export default connect(
-//   state => ({
-//     isLoading: state.isLoading,
-//     email: state.email,
-//     password: state.password,
-//     error: state.error,
-//   }),
-//   dispatch => ({
-//     loginReducer: (email, password) => {
-//       const payload = {
-//         email,
-//         password,
-//       };
-//       dispatch({ type: LOGIN_DATA, payload });
-//     },
-//   }),
-// )(Login);
