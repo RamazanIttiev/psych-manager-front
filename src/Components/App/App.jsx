@@ -7,6 +7,10 @@ import Register from '../Register/Register.jsx';
 import Session from '../Sessions/Sessions.jsx';
 import Clients from '../Clients/Clients.jsx';
 import Home from '../Home/Home.jsx';
+import Session from '../Session/Session.jsx';
+import Clients from '../Clients/Clients.jsx';
+import Home from '../Home/Home.jsx';
+import Mailform from '../Mailform/Mailform.jsx';
 
 class App extends React.Component {
   render() {
@@ -30,6 +34,9 @@ class App extends React.Component {
           </Route>
           <Route exact path="/home">
             <Home />
+          </Route>
+          <Route exact path="/Mailform">
+            <Mailform />
           </Route>
         </Switch>
       </BrowserRouter>
