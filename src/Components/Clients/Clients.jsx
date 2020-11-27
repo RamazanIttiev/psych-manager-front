@@ -1,14 +1,14 @@
 import React from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import SideBar from '../SideBar/SideBar';
+import Sidebar from '../Sidebar/Sidebar';
 import FormContainer from '../FormContainer/FormContainer';
 
 const Clients = () => {
   return (
     <>
       <Header />
-      <SideBar />
+      <Sidebar />
       <div class="content-wrapper">
         <div className="card card-light">
           <div className="card-body">

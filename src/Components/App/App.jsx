@@ -4,10 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 import Login from '../Login/Login.jsx';
 import Register from '../Register/Register.jsx';
-import Session from '../Sessions/Sessions.jsx';
-import Clients from '../Clients/Clients.jsx';
-import Home from '../Home/Home.jsx';
-import Session from '../Session/Session.jsx';
+import Sessions from '../Sessions/Sessions.jsx';
 import Clients from '../Clients/Clients.jsx';
 import Home from '../Home/Home.jsx';
 import Mailform from '../Mailform/Mailform.jsx';
@@ -27,7 +24,7 @@ class App extends React.Component {
             <Register />
           </Route>
           <Route exact path="/sessions">
-            <Session />
+            <Sessions />
           </Route>
           <Route exact path="/clients">
             <Clients />
