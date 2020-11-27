@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
 import { NavLink, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import login from '../../Redux/Auth/authAction.js';
 
 class Login extends Component {
-  state = {};
-
-  handleSubmit = e => {
-    e.preventDefault();
-
-    const data = {
-      email: this.email,
-      password: this.password,
-    };
-
-    Axios.post('auth', data)
-      .then(res => {
-        localStorage.setItem('token', res.data.token);
-
-        this.setState({ auth: true });
-      })
-      .catch(err => {
-        console.log('error');
-      });
+  state = {
+    email: '',
+    password: '',
   };
-  render() {
-    if (this.state.auth) {
-      return <Redirect to="/home" />;
-    }
 
+  /**
+   * Из инпутов мы получаем данные, введенные пользователем, в локальный state
+   * и передаем его в action login (thunk)(AuthAction.js)
+   * эти данные попадают в login (аргумент data)
+   */
+  onSubmit = e => {
+    e.preventDefault();
+    this.props.login(this.state);
+  };
+
+  handleChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  render() {
+    if (this.props.loggedIn) {
+      return <Redirect to="/" />;
+    }
     return (
       <div class="login-page">
         <div className="login-box">
@@ -40,13 +39,16 @@ class Login extends Component {
           <div className="card">
             <div className="card-body login-card-body">
               <p className="login-box-msg">Sign in to start</p>
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.onSubmit}>
                 <div className="input-group mb-3">
                   <input
                     type="email"
+                    name="email"
                     className="form-control"
                     placeholder="Email"
-                    onChange={e => (this.email = e.target.value)}
+                    required
+                    value={this.state.email}
+                    onChange={this.handleChange}
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
@@ -57,9 +59,12 @@ class Login extends Component {
                 <div className="input-group mb-3">
                   <input
                     type="password"
+                    name="password"
                     className="form-control"
                     placeholder="Password"
-                    onChange={e => (this.password = e.target.value)}
+                    required
+                    value={this.state.password}
+                    onChange={this.handleChange}
                   />
                   <div className="input-group-append">
                     <div className="input-group-text">
@@ -67,25 +72,14 @@ class Login extends Component {
                     </div>
                   </div>
                 </div>
-                {/* <div className="input-group mb-3">
-                 <input type="password" className="form-control" placeholder="Retype password"
-                      onChange={e => this.confirmation = e.target.value}/>
-                  <div className="input-group-append">
-                    <div className="input-group-text">
-                      <span className="fas fa-lock" />
-                    </div>
-                  </div>
-                </div> */}
                 <div className="row">
-                  <div className="col-8">
-                    <div className="icheck-primary">
-                      <input type="checkbox" id="remember" />
-                      <label htmlFor="remember">Remember Me</label>
-                    </div>
-                  </div>
                   {/* /.col */}
                   <div className="col-4">
-                    <button type="submit" className="btn btn-primary btn-block">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-block"
+                      disabled={this.props.isLoading}
+                    >
                       Log In
                     </button>
                   </div>
@@ -106,4 +100,14 @@ class Login extends Component {
   }
 }
 
-export default Login;
+const mapStateToProps = state => {
+  return {
+    isLoading: state.isLoading,
+    loggedIn: state.loggedIn,
+  };
+};
+
+const mapDispatchToProps = {
+  login,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,7 +1,6 @@
 import React from 'react';
 import Header from '../Header/Header.jsx';
-import Footer from '../Footer/Footer.jsx';
-import Sidebar from '../Sidebar/Sidebar';
+import Sidebar from '../Sidebar/Sidebar.jsx';
 
 class LoggedIN extends React.Component {
   render() {
@@ -12,7 +11,6 @@ class LoggedIN extends React.Component {
         <div class="content-wrapper">
           <h1>Welcome</h1>
         </div>
-        <Footer />
       </>
     );
   }

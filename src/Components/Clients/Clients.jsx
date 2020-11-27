@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import FormContainer from '../FormContainer/FormContainer';
@@ -57,7 +56,6 @@ const Clients = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

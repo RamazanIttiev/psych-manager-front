@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 /* Import Components */
 import CheckBox from './components/CheckBox';
@@ -6,31 +7,21 @@ import Input from './components/Input';
 import TextArea from './components/TextArea';
 import Select from './components/Select';
 import Button from './components/Button';
+import addNewUser from '../../Redux/NewClient/newClientAction';
 
 class FormContainer extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    newUser: {
+      name: '',
+      age: '',
+      gender: '',
+      skills: [],
+      about: '',
+    },
 
-    this.state = {
-      newUser: {
-        name: '',
-        age: '',
-        gender: '',
-        skills: [],
-        about: '',
-      },
-
-      genderOptions: ['Male', 'Female', 'Others'],
-      skillOptions: ['Телефон', 'E-mail', 'WhatsApp', 'Telegram'],
-    };
-    // this.handleTextArea = this.handleTextArea.bind(this);
-    // this.handleAge = this.handleAge.bind(this);
-    // this.handleFullName = this.handleFullName.bind(this);
-    // this.handleFormSubmit = this.handleFormSubmit.bind(this);
-    // this.handleClearForm = this.handleClearForm.bind(this);
-    // this.handleCheckBox = this.handleCheckBox.bind(this);
-    // this.handleInput = this.handleInput.bind(this);
-  }
+    genderOptions: ['Male', 'Female', 'Others'],
+    connectionType: ['Телефон', 'E-mail', 'WhatsApp', 'Telegram'],
+  };
 
   /* This lifecycle hook gets executed when the component mounts */
 
@@ -98,19 +89,7 @@ class FormContainer extends Component {
     e.preventDefault();
     let userData = this.state.newUser;
 
-    fetch('http://example.com', {
-      method: 'POST',
-      body: JSON.stringify(userData),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    }).then(response => {
-      response.json().then(data => {
-        console.log('Successful' + data);
-      });
-    });
-    console.log(this.state);
+    this.props.addNewUser(userData);
   };
 
   handleClearForm = e => {
@@ -159,7 +138,7 @@ class FormContainer extends Component {
         <CheckBox
           title={'Способ связи'}
           name={'skills'}
-          options={this.state.skillOptions}
+          options={this.state.connectionType}
           selectedOptions={this.state.newUser.skills}
           handleChange={this.handleCheckBox}
         />{' '}
@@ -196,4 +175,10 @@ const buttonStyle = {
   margin: '10px 10px 10px 10px',
 };
 
-export default FormContainer;
+const mapStateToProps = state => {};
+
+const mapDispatchToProps = {
+  addNewUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FormContainer);
