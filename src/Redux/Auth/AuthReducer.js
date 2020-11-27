@@ -1,4 +1,4 @@
-import { loginRequest, loginSuccess, loginFailure } from './AuthAction';
+import { loginRequest, loginSuccess, loginFailure } from './authAction';
 
 const initialState = {
   isLoading: false,

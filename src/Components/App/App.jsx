@@ -1,6 +1,6 @@
 import React from 'react';
 import './App';
-import { BrowserRouter, Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import RootRouter from '../RootRouter/RootRouter';
 
 class App extends React.Component {

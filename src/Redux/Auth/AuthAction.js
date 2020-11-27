@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './AuthTypes';
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './authTypes';
 
 export const loginRequest = bool => {
   return {

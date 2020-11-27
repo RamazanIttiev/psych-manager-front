@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import login, { loginSuccess, loginRequest } from '../../Redux/Auth/AuthAction.js';
+import login from '../../Redux/Auth/authAction.js';
 
 class Login extends Component {
   state = {
