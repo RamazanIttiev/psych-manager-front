@@ -12,9 +12,10 @@ const initialState = {
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case loginRequest:
+      const { isLoading } = action.isLoading;
       return {
         ...state,
-        isLoading: true,
+        isLoading: isLoading,
       };
 
     /*

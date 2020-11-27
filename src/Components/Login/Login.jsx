@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import login from '../../Redux/Auth/AuthAction.js';
+import login, { loginSuccess, loginRequest } from '../../Redux/Auth/AuthAction.js';
 
 class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: '',
-      password: '',
-    };
-  }
+  state = {
+    email: '',
+    password: '',
+  };
 
   /**
    * Из инпутов мы получаем данные, введенные пользователем, в локальный state
@@ -20,7 +17,6 @@ class Login extends Component {
   onSubmit = e => {
     e.preventDefault();
     this.props.login(this.state);
-    console.log(this.props.login(this.state));
   };
 
   handleChange = e => {
@@ -108,7 +104,17 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = {
-  login,
+// Так не работает
+
+// const mapDispatchToProps = {
+//   login,
+// };
+
+// И так не работает
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: data => dispatch(login(data)),
+  };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

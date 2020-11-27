@@ -1,9 +1,10 @@
 import Axios from 'axios';
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './AuthTypes';
 
-export const loginRequest = () => {
+export const loginRequest = bool => {
   return {
     type: LOGIN_REQUEST,
+    isLoading: bool,
   };
 };
 
@@ -33,7 +34,7 @@ export const loginFailure = () => {
  * payload этого же action в свойство token
  */
 const login = data => dispatch => {
-  dispatch(loginRequest());
+  dispatch(loginRequest(true));
   Axios({
     method: 'post',
     url: 'http://127.0.0.1:8000/api/v1/auth',
