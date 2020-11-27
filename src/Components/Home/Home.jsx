@@ -9,7 +9,7 @@ class LoggedIN extends React.Component {
         <Header />
         <Sidebar />
         <div class="content-wrapper">
-          <h1>Wellcome</h1>
+          <h1>Welcome</h1>
         </div>
       </>
     );
