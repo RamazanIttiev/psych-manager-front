@@ -1,4 +1,5 @@
 import { loginRequest, loginSuccess, loginFailure } from './authAction';
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './authTypes';
 
 const initialState = {
   isLoading: false,
@@ -11,27 +12,24 @@ const initialState = {
 
 const loginReducer = (state = initialState, action) => {
   switch (action.type) {
-    case loginRequest:
-      const { isLoading } = action.isLoading;
+    case LOGIN_REQUEST:
       return {
         ...state,
-        isLoading: isLoading,
+        isLoading: true,
       };
-
     /*
      * в условии редьюсера мы берем старый state (...state) и обновляем нужные нам данные.
      *
      * action.token - это наш token c сервера
      */
-    case loginSuccess:
-      const { token } = action.token;
+    case LOGIN_SUCCESS:
       return (state = {
         ...state,
         isLoading: false,
         loggedIn: true,
-        token: token,
+        token: action.payload,
       });
-    case loginFailure:
+    case LOGIN_FAILURE:
       return {
         ...state,
         error: 'Error',

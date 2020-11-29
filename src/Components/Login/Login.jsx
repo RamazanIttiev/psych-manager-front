@@ -24,6 +24,9 @@ class Login extends Component {
   };
 
   render() {
+    if (this.props.loggedIn) {
+      return <Redirect to="/" />;
+    }
     return (
       <div class="login-page">
         <div className="login-box">
@@ -100,21 +103,11 @@ class Login extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.isLoading,
-    isLogged: state.isLogged,
+    loggedIn: state.loggedIn,
   };
 };
 
-// Так не работает
-
-// const mapDispatchToProps = {
-//   login,
-// };
-
-// И так не работает
-
-const mapDispatchToProps = dispatch => {
-  return {
-    login: data => dispatch(login(data)),
-  };
+const mapDispatchToProps = {
+  login,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

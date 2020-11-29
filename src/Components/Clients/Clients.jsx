@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
+import FormContainer from '../FormContainer/FormContainer';
 
 const Clients = () => {
   return (
