@@ -1,11 +1,13 @@
 import Axios from 'axios';
+import { NEW_CLIENT_POST, NEW_CLIENT_SUCCESS } from './newClientTypes';
 
-const addNewUser = data => dispatch => {
+export const addNewClient = data => dispatch => {
+  dispatch({ type: NEW_CLIENT_POST });
   Axios({
     method: 'post',
     url: 'http://127.0.0.1:8000/api/v1/users',
     data: {
-      id: 'string',
+      id: 1,
       name: 'string',
       email: 'admin@yandex.com',
       phone: '0',
@@ -15,9 +17,9 @@ const addNewUser = data => dispatch => {
     },
   })
     .then(res => {
-      console.log('Successful' + res.data);
+      dispatch({ type: NEW_CLIENT_SUCCESS });
     })
-    .catch(err => {});
+    .catch(err => {
+      console.log('Error  ' + err.data);
+    });
 };
-
-export default addNewUser;

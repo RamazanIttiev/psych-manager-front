@@ -7,7 +7,7 @@ import Input from './components/Input';
 import TextArea from './components/TextArea';
 import Select from './components/Select';
 import Button from './components/Button';
-import addNewUser from '../../Redux/NewClient/newClientAction';
+import { addNewClient } from '../../Redux/NewClient/newClientAction';
 
 class FormContainer extends Component {
   state = {
@@ -87,9 +87,7 @@ class FormContainer extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    let userData = this.state.newUser;
-
-    this.props.addNewUser(userData);
+    this.props.addNewClient(this.state.newUser);
   };
 
   handleClearForm = e => {
@@ -157,6 +155,7 @@ class FormContainer extends Component {
           type={'primary'}
           title={'Отправить'}
           style={buttonStyle}
+          disabled={this.props.isLoading}
         />{' '}
         {/*Submit */}
         <Button
@@ -175,10 +174,14 @@ const buttonStyle = {
   margin: '10px 10px 10px 10px',
 };
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => {
+  return {
+    isLoading: state.isLoading,
+  };
+};
 
 const mapDispatchToProps = {
-  addNewUser,
+  addNewClient,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormContainer);

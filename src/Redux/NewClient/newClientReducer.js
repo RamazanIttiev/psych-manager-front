@@ -1,13 +1,29 @@
+import { LOGOUT } from '../Auth/authTypes';
+import { NEW_CLIENT_POST, NEW_CLIENT_SUCCESS } from './newClientTypes';
+
 const initialState = {
-  name: '',
-  age: '',
-  gender: '',
-  skills: [],
-  about: '',
+  isLoading: false,
+  id: 'string',
+  name: 'string',
+  email: 'string',
+  connection_type: 0,
+  connection_type_string: 'string',
 };
 
-const newUserReducer = (state = initialState, action) => {
+export const newClientReducer = (state = initialState, action) => {
   switch (action.type) {
-    case example:
+    case NEW_CLIENT_POST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case NEW_CLIENT_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+      };
+
+    default:
+      return state;
   }
 };
