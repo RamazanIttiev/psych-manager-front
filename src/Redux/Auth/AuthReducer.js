@@ -1,4 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './authTypes';
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './AuthTypes';
 
 const initialState = {
   isLoading: false,
