@@ -1,8 +1,14 @@
 import React from 'react';
-
-import { Link, NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { logout } from '../../Redux/Auth/authAction';
 
 const Header = () => {
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    dispatch(logout());
+  };
   return (
     <>
       {/* Navbar */}

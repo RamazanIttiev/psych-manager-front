@@ -1,8 +1,15 @@
-import { applyMiddleware, createStore } from 'redux';
+import { applyMiddleware, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import loginReducer from '../Auth/AuthReducer.js';
+import { loginReducer, logoutReducer } from '../Auth/authReducer.js';
+import { newClientReducer } from '../NewClient/newClientReducer.js';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-const store = createStore(loginReducer, composeWithDevTools(applyMiddleware(thunk)));
+const rootReducer = combineReducers({
+  loginReducer,
+  logoutReducer,
+  newClientReducer,
+});
+
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;

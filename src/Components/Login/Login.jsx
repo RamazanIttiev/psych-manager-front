@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { NavLink, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import login from '../../Redux/Auth/AuthAction.js';
+import { NavLink, Redirect } from 'react-router-dom';
+import { login } from '../../Redux/Auth/authAction.js';
 
 class Login extends Component {
   state = {
@@ -110,4 +110,5 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   login,
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

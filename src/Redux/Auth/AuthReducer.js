@@ -1,4 +1,4 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './AuthTypes';
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from './authTypes';
 
 const initialState = {
   isLoading: false,
@@ -9,7 +9,7 @@ const initialState = {
   token: null,
 };
 
-const loginReducer = (state = initialState, action) => {
+export const loginReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -38,4 +38,19 @@ const loginReducer = (state = initialState, action) => {
   }
 };
 
-export default loginReducer;
+export const logoutReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case LOGOUT:
+      return {
+        ...state,
+        isLoading: false,
+        email: '',
+        password: '',
+        error: '',
+        loggedIn: false,
+        token: null,
+      };
+    default:
+      return state;
+  }
+};
