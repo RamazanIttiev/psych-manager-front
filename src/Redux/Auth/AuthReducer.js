@@ -1,4 +1,3 @@
-import { loginRequest, loginSuccess, loginFailure } from './authAction';
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './authTypes';
 
 const initialState = {

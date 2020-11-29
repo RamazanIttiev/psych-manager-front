@@ -1,4 +1,3 @@
-import { createAction } from '@reduxjs/toolkit';
 import Axios from 'axios';
 import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS } from './authTypes';
 
