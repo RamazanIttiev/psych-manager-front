@@ -1,39 +1,56 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { logout } from '../../Redux/Auth/authAction';
 
-const Header = () => {
-  const dispatch = useDispatch();
-
-  const logout = () => {
-    dispatch(logout());
+class Header extends Component {
+  onSubmit = () => {
+    this.props.logout();
+    console.log('submit');
   };
-  return (
-    <>
-      {/* Navbar */}
-      <nav className="main-header navbar navbar-expand navbar-white navbar-light">
-        {/* Left navbar links */}
-        <ul className="navbar-nav">
-          <li className="nav-item">
-            <a className="nav-link" data-widget="pushmenu" role="button">
-              <i className="fas fa-bars" />
-            </a>
-          </li>
-        </ul>
-        {/* Right navbar links */}
-        <ul className="navbar-nav ml-auto">
-          {/* Messages Dropdown Menu */}
-          <li className="nav-item">
-            <NavLink to="/login">
-              <i className="nav-link nav-icon fa fa-sign-out-alt" />
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-      {/* /.navbar */}
-    </>
-  );
+
+  render() {
+    if (this.props.loggedIn === false) {
+      return <Redirect to="/login" />;
+    }
+    return (
+      <>
+        {/* Navbar */}
+        <nav className="main-header navbar navbar-expand navbar-white navbar-light">
+          {/* Left navbar links */}
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a href="#" className="nav-link" data-widget="pushmenu" role="button">
+                <i className="fas fa-bars" />
+              </a>
+            </li>
+          </ul>
+          {/* Right navbar links */}
+          <ul className="navbar-nav ml-auto">
+            {/* Messages Dropdown Menu */}
+
+            <li className="nav-item">
+              <a type="submit" onClick={this.onSubmit}>
+                <i className="nav-link nav-icon fa fa-sign-out-alt" />
+              </a>
+            </li>
+          </ul>
+        </nav>
+        {/* /.navbar */}
+      </>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    isLoading: state.authReducer.isLoading,
+    loggedIn: state.authReducer.loggedIn,
+  };
 };
 
-export default Header;
+const mapDispatchToProps = {
+  logout,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

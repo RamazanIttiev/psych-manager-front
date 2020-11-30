@@ -102,8 +102,8 @@ class Login extends Component {
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.isLoading,
-    loggedIn: state.loggedIn,
+    isLoading: state.authReducer.isLoading,
+    loggedIn: state.authReducer.loggedIn,
   };
 };
 

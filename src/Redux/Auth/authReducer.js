@@ -9,7 +9,7 @@ const initialState = {
   token: null,
 };
 
-export const loginReducer = (state = initialState, action) => {
+export const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_REQUEST:
       return {
@@ -33,20 +33,9 @@ export const loginReducer = (state = initialState, action) => {
         ...state,
         error: 'Error',
       };
-    default:
-      return state;
-  }
-};
-
-export const logoutReducer = (state = initialState, action) => {
-  switch (action.type) {
     case LOGOUT:
       return {
         ...state,
-        isLoading: false,
-        email: '',
-        password: '',
-        error: '',
         loggedIn: false,
         token: null,
       };
