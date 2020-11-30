@@ -11,7 +11,7 @@ class Login extends Component {
 
   /**
    * Из инпутов мы получаем данные, введенные пользователем, в локальный state
-   * и передаем его в action login (thunk)(AuthAction.js)
+   * и передаем его в action login (thunk)(authAction.js)
    * эти данные попадают в login (аргумент data)
    */
   onSubmit = e => {
