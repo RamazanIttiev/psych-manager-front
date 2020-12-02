@@ -27,31 +27,13 @@ const Clients = () => {
               <thead>
                 <tr>
                   <th>Фамилия Имя</th>
-                  <th>Возраст</th>
                   <th>Пол</th>
+                  <th>E-mail</th>
+                  <th>Номер</th>
                   <th>Способ связи</th>
-                  <th>Номер телефона/E-mail</th>
+                  <th>Действия</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    <input type="text" className="form-control"></input>
-                  </td>
-                  <td>
-                    <input type="text" className="form-control"></input>
-                  </td>
-                  <td>
-                    <input type="text" className="form-control"></input>
-                  </td>
-                  <td>
-                    <input type="text" className="form-control"></input>
-                  </td>
-                  <td>
-                    <input type="text" className="form-control"></input>
-                  </td>
-                </tr>
-              </tbody>
             </table>
           </div>
         </div>

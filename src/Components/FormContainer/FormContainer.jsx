@@ -2,29 +2,27 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 /* Import Components */
-import CheckBox from './components/CheckBox';
 import Input from './components/Input';
-import TextArea from './components/TextArea';
 import Select from './components/Select';
 import Button from './components/Button';
-import { addNewClient } from '../../Redux/NewClient/newClientAction';
+import { addNewClient, connection_type } from '../../Redux/NewClient/newClientAction';
 
 class FormContainer extends Component {
   state = {
     newUser: {
       name: '',
-      age: '',
       gender: '',
-      skills: [],
-      about: '',
+      email: '',
+      phone: '',
+      connection_type: [this.props.connection_type],
     },
 
-    genderOptions: ['Male', 'Female', 'Others'],
-    connectionType: ['Телефон', 'E-mail', 'WhatsApp', 'Telegram'],
+    gender_list: ['Male', 'Female', 'Others'],
   };
 
-  /* This lifecycle hook gets executed when the component mounts */
-
+  componentDidMount() {
+    this.props.connection_type();
+  }
   handleFullName = e => {
     let value = e.target.value;
     this.setState(prevState => ({
@@ -34,18 +32,6 @@ class FormContainer extends Component {
       },
     }));
   };
-
-  handleAge = e => {
-    let value = e.target.value;
-    this.setState(prevState => ({
-      newUser: {
-        ...prevState.newUser,
-        age: value,
-      },
-    }));
-  };
-
-  // Почему name в []?
 
   handleInput = e => {
     let value = e.target.value;
@@ -58,36 +44,9 @@ class FormContainer extends Component {
     }));
   };
 
-  handleTextArea = e => {
-    let value = e.target.value;
-    this.setState(prevState => ({
-      newUser: {
-        ...prevState.newUser,
-        about: value,
-      },
-    }));
-  };
-
-  // Разобрать данный метод
-
-  handleCheckBox = e => {
-    const newSelection = e.target.value;
-    let newSelectionArray;
-
-    if (this.state.newUser.skills.indexOf(newSelection) > -1) {
-      newSelectionArray = this.state.newUser.skills.filter(s => s !== newSelection);
-    } else {
-      newSelectionArray = [...this.state.newUser.skills, newSelection];
-    }
-
-    this.setState(prevState => ({
-      newUser: { ...prevState.newUser, skills: newSelectionArray },
-    }));
-  };
-
   handleFormSubmit = e => {
     e.preventDefault();
-    this.props.addNewClient(this.state.newUser);
+    console.log(this.props.connection_type);
   };
 
   handleClearForm = e => {
@@ -113,58 +72,55 @@ class FormContainer extends Component {
           value={this.state.newUser.name}
           placeholder={'Введите Имя Фамилию'}
           onChange={this.handleFullName}
-        />{' '}
-        {/* Name of the user */}
-        <Input
-          type={'number'}
-          name={'age'}
-          title={'Возраст'}
-          value={this.state.newUser.age}
-          placeholder={'Выберете Ваш возраст'}
-          onChange={this.handleAge}
-        />{' '}
-        {/* Age */}
+        />
         <Select
           title={'Пол'}
           name={'gender'}
-          options={this.state.genderOptions}
-          value={this.state.newUser.gender}
           placeholder={'Выберете пол'}
+          options={this.state.gender_list}
+          value={this.state.newUser.gender}
           handleChange={this.handleInput}
-        />{' '}
-        {/* Age Selection */}
-        <CheckBox
-          title={'Способ связи'}
-          name={'skills'}
-          options={this.state.connectionType}
-          selectedOptions={this.state.newUser.skills}
-          handleChange={this.handleCheckBox}
-        />{' '}
-        {/* Skill */}
-        <TextArea
-          title={'Номер телефона/E-mail'}
-          rows={2}
-          value={this.state.newUser.about}
-          name={'currentPetInfo'}
-          handleChange={this.handleTextArea}
-          placeholder={'Введите номер телефона/E-mail'}
         />
-        {/* About you */}
+        <Select
+          title={'Способ связи'}
+          name={'connection_type'}
+          placeholder={'Выберите способ связи'}
+          key={this.state.newUser.connection_type.id}
+          options={this.state.newUser.connection_type}
+          value={this.state.newUser.connection_type}
+          handleChange={this.handleInput}
+        />
+        <Input
+          type={'email'}
+          title={'Email'}
+          name="email"
+          placeholder={'Введите свой E-mail'}
+          value={this.state.newUser.email}
+          onChange={this.handleInput}
+        />
+        <Input
+          type={'number'}
+          title={'Phone number'}
+          name={'phone'}
+          placeholder={'Введите свой номер'}
+          value={this.state.newUser.phone}
+          onChange={this.handleInput}
+        />
+        {/*Submit */}
         <Button
           action={this.handleFormSubmit}
           type={'primary'}
           title={'Отправить'}
           style={buttonStyle}
           disabled={this.props.isLoading}
-        />{' '}
-        {/*Submit */}
+        />
+        {/* Clear the form */}
         <Button
           action={this.handleClearForm}
           type={'secondary'}
           title={'Очистить'}
           style={buttonStyle}
-        />{' '}
-        {/* Clear the form */}
+        />
       </form>
     );
   }
@@ -176,12 +132,14 @@ const buttonStyle = {
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.isLoading,
+    isLoading: state.newClientReducer.isLoading,
+    connection_type: state.newClientReducer.connection_type,
   };
 };
 
 const mapDispatchToProps = {
   addNewClient,
+  connection_type,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormContainer);

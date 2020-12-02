@@ -2,9 +2,6 @@ import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from './authTypes
 
 const initialState = {
   isLoading: false,
-  email: '',
-  password: '',
-  error: '',
   loggedIn: false,
   token: null,
 };
