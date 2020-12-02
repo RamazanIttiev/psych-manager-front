@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-/* Import Components */
 import CheckBox from './components/CheckBox';
 import Input from './components/Input';
 import TextArea from './components/TextArea';
@@ -23,8 +21,6 @@ class FormContainer extends Component {
     connectionType: ['Телефон', 'E-mail', 'WhatsApp', 'Telegram'],
   };
 
-  /* This lifecycle hook gets executed when the component mounts */
-
   handleFullName = e => {
     let value = e.target.value;
     this.setState(prevState => ({
@@ -44,8 +40,6 @@ class FormContainer extends Component {
       },
     }));
   };
-
-  // Почему name в []?
 
   handleInput = e => {
     let value = e.target.value;
@@ -67,8 +61,6 @@ class FormContainer extends Component {
       },
     }));
   };
-
-  // Разобрать данный метод
 
   handleCheckBox = e => {
     const newSelection = e.target.value;

@@ -32,7 +32,7 @@ class Login extends Component {
         <div className="login-box">
           <div className="login-logo">
             <a href="../../index2.html">
-              <b>Wellcome</b>
+              <b>Welcome</b>
             </a>
           </div>
           {/* /.login-logo */}
