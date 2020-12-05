@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import Input from './components/Input';
 import Select from './components/Select';
 import Button from './components/Button';
-import { addNewClient, connection_type } from '../../Redux/NewClient/newClientAction';
+import { addUser, getConnectionType } from '../../Redux/NewUser/newUserAction';
+import Axios from 'axios';
 
 class FormContainer extends Component {
   state = {
@@ -14,24 +15,38 @@ class FormContainer extends Component {
       gender: '',
       email: '',
       phone: '',
-      connection_type: [this.props.connection_type],
+      connection_type: this.props.connection_state,
+      connection_type_string: '',
     },
 
     gender_list: ['Male', 'Female', 'Others'],
   };
 
   componentDidMount() {
-    this.props.connection_type();
+    this.props.getConnectionType();
+    // Axios({
+    //   method: 'get',
+    //   headers: {
+    //     'X-API-KEY': this.props.token,
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   url: 'http://127.0.0.1:8000/api/v1/static-data/get-connection-types',
+    // })
+    //   .then(res => {
+    //     const myArr = res.data.data.connection_types;
+    //     const newArr = myArr.map(item => {
+    //       return item.name;
+    //     });
+    //     this.setState({
+    //       newUser: {
+    //         connection_type: newArr,
+    //       },
+    //     });
+    //     console.log(newArr);
+    //   })
+    //   .catch(err => {});
   }
-  handleFullName = e => {
-    let value = e.target.value;
-    this.setState(prevState => ({
-      newUser: {
-        ...prevState.newUser,
-        name: value,
-      },
-    }));
-  };
 
   handleInput = e => {
     let value = e.target.value;
@@ -46,7 +61,8 @@ class FormContainer extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
-    console.log(this.props.connection_type);
+    this.props.addUser(this.state);
+    console.log(this.state.newUser);
   };
 
   handleClearForm = e => {
@@ -56,8 +72,6 @@ class FormContainer extends Component {
         name: '',
         age: '',
         gender: '',
-        skills: [],
-        about: '',
       },
     });
   };
@@ -66,59 +80,59 @@ class FormContainer extends Component {
     return (
       <form className="container-fluid" onSubmit={this.handleFormSubmit}>
         <Input
-          type={'text'}
-          title={'Фамилия Имя'}
-          name={'name'}
+          type="text"
+          title="Фамилия Имя"
+          name="name"
           value={this.state.newUser.name}
           placeholder={'Введите Имя Фамилию'}
-          onChange={this.handleFullName}
+          onChange={this.handleInput}
         />
         <Select
-          title={'Пол'}
-          name={'gender'}
-          placeholder={'Выберете пол'}
+          title="Пол"
+          name="gender"
+          placeholder="Выберете пол"
           options={this.state.gender_list}
           value={this.state.newUser.gender}
           handleChange={this.handleInput}
         />
         <Select
-          title={'Способ связи'}
-          name={'connection_type'}
-          placeholder={'Выберите способ связи'}
-          key={this.state.newUser.connection_type.id}
+          title="Способ связи"
+          name="connection_type_string"
+          placeholder="Выберите способ связи"
+          // key={this.state.newUser.connection_type}
           options={this.state.newUser.connection_type}
-          value={this.state.newUser.connection_type}
+          value={this.state.newUser.connection_type_string}
           handleChange={this.handleInput}
         />
         <Input
-          type={'email'}
-          title={'Email'}
+          type="email"
+          title="Email"
           name="email"
-          placeholder={'Введите свой E-mail'}
+          placeholder="Введите свой E-mail"
           value={this.state.newUser.email}
           onChange={this.handleInput}
         />
         <Input
-          type={'number'}
-          title={'Phone number'}
-          name={'phone'}
-          placeholder={'Введите свой номер'}
+          type="number"
+          title="Phone number"
+          name="phone"
+          placeholder="Введите свой номер"
           value={this.state.newUser.phone}
           onChange={this.handleInput}
         />
         {/*Submit */}
         <Button
           action={this.handleFormSubmit}
-          type={'primary'}
-          title={'Отправить'}
+          type="primary"
+          title="Отправить"
           style={buttonStyle}
           disabled={this.props.isLoading}
         />
         {/* Clear the form */}
         <Button
           action={this.handleClearForm}
-          type={'secondary'}
-          title={'Очистить'}
+          type="secondary"
+          title="Очистить"
           style={buttonStyle}
         />
       </form>
@@ -132,14 +146,15 @@ const buttonStyle = {
 
 const mapStateToProps = state => {
   return {
-    isLoading: state.newClientReducer.isLoading,
-    connection_type: state.newClientReducer.connection_type,
+    isLoading: state.newUserReducer.isLoading,
+    connection_state: state.newUserReducer.connection_type,
+    token: state.authReducer.token,
   };
 };
 
 const mapDispatchToProps = {
-  addNewClient,
-  connection_type,
+  addUser,
+  getConnectionType,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormContainer);

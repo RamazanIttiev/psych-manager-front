@@ -6,7 +6,6 @@ import { logout } from '../../Redux/Auth/authAction';
 class Header extends Component {
   onSubmit = () => {
     this.props.logout();
-    console.log('submit');
   };
 
   render() {

@@ -15,6 +15,10 @@ import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from './authTypes
 export const login = data => (dispatch, getState) => {
   dispatch({ type: LOGIN_REQUEST });
   Axios({
+    headers: {
+      accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
     method: 'post',
     url: 'http://127.0.0.1:8000/api/v1/auth',
     data: {
@@ -24,7 +28,6 @@ export const login = data => (dispatch, getState) => {
   })
     .then(res => {
       dispatch({ type: LOGIN_SUCCESS, payload: res.data.data.token });
-      console.log(getState());
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAILURE });

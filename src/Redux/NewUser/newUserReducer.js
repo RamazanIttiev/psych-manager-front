@@ -1,9 +1,4 @@
-import {
-  NEW_CLIENT_REQUEST,
-  NEW_CLIENT_SUCCESS,
-  NEW_CLIENT_FAILURE,
-  ADD_CONNECTION_TYPE,
-} from './newClientTypes';
+import { USER_REQUEST, USER_SUCCESS, USER_FAILURE, USER_CONNECTION } from './newUserTypes';
 
 const initialState = {
   isLoading: false,
@@ -11,18 +6,19 @@ const initialState = {
   gender: '',
   email: '',
   phone: '',
-  connection_type: [],
-  connection_type_string: '',
+  password: '',
+  role: '',
+  connection_type: '',
 };
 
-export const newClientReducer = (state = initialState, action) => {
+export const newUserReducer = (state = initialState, action) => {
   switch (action.type) {
-    case NEW_CLIENT_REQUEST:
+    case USER_REQUEST:
       return {
         ...state,
         isLoading: true,
       };
-    case NEW_CLIENT_SUCCESS:
+    case USER_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -30,18 +26,19 @@ export const newClientReducer = (state = initialState, action) => {
         gender: action.payload.data.gender,
         email: action.payload.data.email,
         phone: action.payload.data.phone,
+        password: action.payload.data.password,
+        role: action.payload.data.role,
         connection_type: action.payload.data.connection_type,
       };
-    case NEW_CLIENT_FAILURE:
+    case USER_FAILURE:
       return {
         ...state,
       };
-    case ADD_CONNECTION_TYPE:
+    case USER_CONNECTION:
       return {
         ...state,
         connection_type: action.payload,
       };
-
     default:
       return state;
   }
