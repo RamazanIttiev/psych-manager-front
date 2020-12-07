@@ -12,7 +12,7 @@ import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from './authTypes
  *
  * он попопадает в payload LOGIN_SUCCESS и в редьюсере идет в state
  */
-export const login = data => (dispatch, getState) => {
+export const login = data => dispatch => {
   dispatch({ type: LOGIN_REQUEST });
   Axios({
     headers: {

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Input from './components/Input';
 import Select from './components/Select';
 import Button from './components/Button';
-import { addUser, getConnectionType } from '../../Redux/NewUser/newUserAction';
+import { addUser } from '../../Redux/NewUser/newUserAction';
 import Axios from 'axios';
 
 class FormContainer extends Component {
@@ -15,7 +15,7 @@ class FormContainer extends Component {
       gender: '',
       email: '',
       phone: '',
-      connection_type: this.props.connection_state,
+      connection_type: [],
       connection_type_string: '',
     },
 
@@ -23,29 +23,28 @@ class FormContainer extends Component {
   };
 
   componentDidMount() {
-    this.props.getConnectionType();
-    // Axios({
-    //   method: 'get',
-    //   headers: {
-    //     'X-API-KEY': this.props.token,
-    //     Accept: 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   url: 'http://127.0.0.1:8000/api/v1/static-data/get-connection-types',
-    // })
-    //   .then(res => {
-    //     const myArr = res.data.data.connection_types;
-    //     const newArr = myArr.map(item => {
-    //       return item.name;
-    //     });
-    //     this.setState({
-    //       newUser: {
-    //         connection_type: newArr,
-    //       },
-    //     });
-    //     console.log(newArr);
-    //   })
-    //   .catch(err => {});
+    // this.props.getConnectionType();
+    Axios({
+      method: 'get',
+      headers: {
+        'X-API-KEY': this.props.token,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      url: 'http://127.0.0.1:8000/api/v1/static-data/get-connection-types',
+    })
+      .then(res => {
+        const myArr = res.data.data.connection_types;
+        const newArr = myArr.map(item => {
+          return item.name;
+        });
+        this.setState({
+          newUser: {
+            connection_type: newArr,
+          },
+        });
+      })
+      .catch(err => {});
   }
 
   handleInput = e => {
@@ -62,18 +61,19 @@ class FormContainer extends Component {
   handleFormSubmit = e => {
     e.preventDefault();
     this.props.addUser(this.state);
-    console.log(this.state.newUser);
   };
 
   handleClearForm = e => {
     e.preventDefault();
-    this.setState({
-      newUser: {
-        name: '',
-        age: '',
-        gender: '',
-      },
-    });
+    // this.setState({
+    //   newUser: {
+    //     name: '',
+    //     gender: '',
+    //     email: '',
+    //     phone: '',
+    //     connection_type_string: '',
+    //   },
+    // });
   };
 
   render() {
@@ -154,7 +154,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   addUser,
-  getConnectionType,
+  // getConnectionType,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormContainer);

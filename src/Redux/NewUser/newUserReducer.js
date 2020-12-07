@@ -6,9 +6,9 @@ const initialState = {
   gender: '',
   email: '',
   phone: '',
-  password: '',
   role: '',
   connection_type: '',
+  connection_type_string: '',
 };
 
 export const newUserReducer = (state = initialState, action) => {
@@ -22,13 +22,13 @@ export const newUserReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        name: action.payload.data.name,
-        gender: action.payload.data.gender,
-        email: action.payload.data.email,
-        phone: action.payload.data.phone,
-        password: action.payload.data.password,
-        role: action.payload.data.role,
-        connection_type: action.payload.data.connection_type,
+        name: action.payload.newUser.name,
+        gender: action.payload.newUser.gender,
+        email: action.payload.newUser.email,
+        phone: action.payload.newUser.phone,
+        role: action.payload.newUser.role,
+        connection_type: action.payload.newUser.connection_type,
+        connection_type_string: action.payload.newUser.connection_type_string,
       };
     case USER_FAILURE:
       return {
