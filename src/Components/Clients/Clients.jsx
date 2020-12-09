@@ -2,9 +2,17 @@ import React from 'react';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import Sidebar from "../SideBar/Sidebar";
-import FormContainer from "../FormContainer/FormContainer";
+import { Container } from "./Container";
+import './App.css';
 
 const Clients = () => {
+    const triggerText = 'Добавить';
+    const onSubmit = (event) => {
+        event.preventDefault(event);
+        console.log(event.target.name.value);
+        console.log(event.target.email.value);
+        console.log(event.target.phone.value);
+    };
   return (
     <>
       <Header />
@@ -15,10 +23,13 @@ const Clients = () => {
             <div className="card-header">
               <h3>Завести нового клиента</h3>
             </div>
-            <FormContainer />
+              <div>
+                  <br/>
+              <Container triggerText={triggerText} onSubmit={onSubmit} />
+              </div>
+            {/*<FormContainer />*/}
           </div>
         </div>
-        {/* Таблица с данными о клиенте */}
         <div className="card">
           <div className="card-header">
             <h3>Таблица с данными о клиентах</h3>
@@ -28,20 +39,12 @@ const Clients = () => {
               <thead>
                 <tr>
                   <th>Фамилия Имя</th>
-                  <th>Возраст</th>
-                  <th>Пол</th>
-                  <th>Способ связи</th>
-                  <th>Номер телефона/E-mail</th>
+                  <th>E-mail</th>
+                  <th>Номер телефона</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>
-                    <input type="text" className="form-control"></input>
-                  </td>
-                  <td>
-                    <input type="text" className="form-control"></input>
-                  </td>
                   <td>
                     <input type="text" className="form-control"></input>
                   </td>
@@ -57,6 +60,7 @@ const Clients = () => {
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   );
