@@ -1,5 +1,11 @@
 import Axios from 'axios';
-import { USER_REQUEST, USER_SUCCESS, USER_FAILURE, USER_CONNECTION } from './newUserTypes';
+import {
+  USER_REQUEST,
+  USER_SUCCESS,
+  USER_FAILURE,
+  USER_CONNECTION,
+  USERS_LIST,
+} from './newUserTypes';
 
 export const addUser = data => (dispatch, getState) => {
   dispatch({ type: USER_REQUEST });
@@ -30,22 +36,38 @@ export const addUser = data => (dispatch, getState) => {
     });
 };
 
-// export const getConnectionType = data => (dispatch, getState) => {
-//   Axios({
-//     method: 'get',
-//     headers: {
-//       'X-API-KEY': getState().authReducer.token,
-//       Accept: 'application/json',
-//       'Content-Type': 'application/json',
-//     },
-//     url: 'http://127.0.0.1:8000/api/v1/static-data/get-connection-types',
-//   })
-//     .then(res => {
-//       const myArr = res.data.data.connection_types;
-//       const newArr = myArr.map(item => {
-//         return item.name;
-//       });
-//       dispatch({ type: USER_CONNECTION, payload: newArr });
-//     })
-//     .catch(err => {});
-// };
+export const getUsers = () => (dispatch, getState) => {
+  Axios({
+    method: 'get',
+    headers: {
+      'X-API-KEY': getState().authReducer.token,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    url: 'http://127.0.0.1:8000/api/v1/users',
+  })
+    .then(res => {
+      console.log(res.data.data.users);
+      dispatch({ type: USERS_LIST, payload: res.data.data.users });
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+export const getConnectionType = () => (dispatch, getState) => {
+  Axios({
+    method: 'get',
+    headers: {
+      'X-API-KEY': getState().authReducer.token,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    url: 'http://127.0.0.1:8000/api/v1/static-data/get-connection-types',
+  })
+    .then(res => {
+      const myArr = res.data.data.connection_types;
+      dispatch({ type: USER_CONNECTION, payload: myArr });
+    })
+    .catch(err => {});
+};

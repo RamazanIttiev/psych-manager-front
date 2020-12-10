@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 import Input from './components/Input';
 import Select from './components/Select';
 import Button from './components/Button';
-import { addUser } from '../../Redux/NewUser/newUserAction';
-import Axios from 'axios';
+import { addUser, getConnectionType } from '../../Redux/NewUser/newUserAction';
 
 class FormContainer extends Component {
   state = {
@@ -23,28 +22,7 @@ class FormContainer extends Component {
   };
 
   componentDidMount() {
-    // this.props.getConnectionType();
-    Axios({
-      method: 'get',
-      headers: {
-        'X-API-KEY': this.props.token,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      url: 'http://127.0.0.1:8000/api/v1/static-data/get-connection-types',
-    })
-      .then(res => {
-        const myArr = res.data.data.connection_types;
-        const newArr = myArr.map(item => {
-          return item.name;
-        });
-        this.setState({
-          newUser: {
-            connection_type: newArr,
-          },
-        });
-      })
-      .catch(err => {});
+    this.props.getConnectionType();
   }
 
   handleInput = e => {
@@ -99,8 +77,7 @@ class FormContainer extends Component {
           title="Способ связи"
           name="connection_type_string"
           placeholder="Выберите способ связи"
-          // key={this.state.newUser.connection_type}
-          options={this.state.newUser.connection_type}
+          options={this.props.connection_state}
           value={this.state.newUser.connection_type_string}
           handleChange={this.handleInput}
         />
@@ -148,13 +125,12 @@ const mapStateToProps = state => {
   return {
     isLoading: state.newUserReducer.isLoading,
     connection_state: state.newUserReducer.connection_type,
-    token: state.authReducer.token,
   };
 };
 
 const mapDispatchToProps = {
   addUser,
-  // getConnectionType,
+  getConnectionType,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FormContainer);

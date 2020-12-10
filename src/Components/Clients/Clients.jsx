@@ -3,23 +3,13 @@ import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
 import FormContainer from '../FormContainer/FormContainer';
 import { connect } from 'react-redux';
-import { addUser } from '../../Redux/NewUser/newUserAction';
+import { addUser, getUsers } from '../../Redux/NewUser/newUserAction';
 
 class Clients extends Component {
-  state = {
-    user: [
-      this.props.name,
-      this.props.gender,
-      this.props.email,
-      this.props.phone,
-      this.props.connection_type_string,
-    ],
-  };
-
-  componentDidUpdate() {
-    console.log(this.state);
-    console.log(this.props.name);
+  componentDidMount() {
+    this.props.getUsers();
   }
+
   render() {
     return (
       <>
@@ -50,11 +40,18 @@ class Clients extends Component {
                     <th>Способ связи</th>
                     <th>Действия</th>
                   </tr>
-                  <tr>
-                    {this.state.user.map(item => {
-                      return <td> {item}</td>;
-                    })}
-                  </tr>
+
+                  {this.props.users.map(element => {
+                    return (
+                      <tr>
+                        <td>{element.name}</td>
+                        <td>{element.gender}</td>
+                        <td>{element.email}</td>
+                        <td>{element.phone}</td>
+                        <td>{element.connection_type}</td>
+                      </tr>
+                    );
+                  })}
                 </thead>
               </table>
             </div>
@@ -67,16 +64,13 @@ class Clients extends Component {
 
 const mapStateToProps = state => {
   return {
-    name: state.newUserReducer.name,
-    gender: state.newUserReducer.gender,
-    email: state.newUserReducer.email,
-    phone: state.newUserReducer.phone,
-    connection_type_string: state.newUserReducer.connection_type_string,
+    users: state.newUserReducer.users,
   };
 };
 
 const mapDispatchToProps = {
   addUser,
+  getUsers,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);

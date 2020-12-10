@@ -13,7 +13,7 @@ const Select = props => {
       >
         <option>{props.placeholder}</option>
         {props.options.map(option => {
-          return <option>{option}</option>;
+          return <option value={option.id}>{option.name}</option>;
         })}
       </select>
     </div>

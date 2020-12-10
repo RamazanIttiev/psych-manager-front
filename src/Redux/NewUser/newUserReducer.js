@@ -1,4 +1,10 @@
-import { USER_REQUEST, USER_SUCCESS, USER_FAILURE, USER_CONNECTION } from './newUserTypes';
+import {
+  USER_REQUEST,
+  USER_SUCCESS,
+  USER_FAILURE,
+  USER_CONNECTION,
+  USERS_LIST,
+} from './newUserTypes';
 
 const initialState = {
   isLoading: false,
@@ -7,8 +13,9 @@ const initialState = {
   email: '',
   phone: '',
   role: '',
-  connection_type: '',
+  connection_type: [],
   connection_type_string: '',
+  users: [],
 };
 
 export const newUserReducer = (state = initialState, action) => {
@@ -39,6 +46,12 @@ export const newUserReducer = (state = initialState, action) => {
         ...state,
         connection_type: action.payload,
       };
+    case USERS_LIST:
+      return {
+        ...state,
+        users: action.payload,
+      };
+
     default:
       return state;
   }
