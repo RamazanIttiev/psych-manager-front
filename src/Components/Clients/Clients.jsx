@@ -1,76 +1,69 @@
-import React, { Component } from 'react';
+import React from 'react';
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
-import Sidebar from '../Sidebar/Sidebar';
-import FormContainer from '../FormContainer/FormContainer';
-import { connect } from 'react-redux';
-import { addUser, getUsers } from '../../Redux/NewUser/newUserAction';
+import Sidebar from "../Sidebar/Sidebar";
+import { Container } from "./Container";
+import './App.css';
 
-class Clients extends Component {
-  componentDidMount() {
-    this.props.getUsers();
-  }
-
-  render() {
-    return (
-      <>
-        <Header />
-        <Sidebar />
-        <div class="content-wrapper">
-          <div className="card card-light">
-            <div className="card-body">
-              <div className="card-header">
-                <h3>Завести нового клиента</h3>
-              </div>
-              <FormContainer />
-            </div>
-          </div>
-          {/* Таблица с данными о клиенте */}
-          <div className="card">
+const Clients = () => {
+    const triggerText = 'Добавить';
+    const onSubmit = (event) => {
+        event.preventDefault(event);
+        console.log(event.target.name.value);
+        console.log(event.target.email.value);
+        console.log(event.target.phone.value);
+    };
+  return (
+    <>
+      <Header />
+      <Sidebar />
+      <div class="content-wrapper">
+        <div className="card card-light">
+          <div className="card-body">
             <div className="card-header">
-              <h3>Таблица с данными о клиентах</h3>
+              <h3>Завести нового клиента</h3>
             </div>
-            <div className="card-body">
-              <table className="table table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th>Фамилия Имя</th>
-                    <th>Пол</th>
-                    <th>E-mail</th>
-                    <th>Номер</th>
-                    <th>Способ связи</th>
-                    <th>Действия</th>
-                  </tr>
-
-                  {this.props.users.map(element => {
-                    return (
-                      <tr>
-                        <td>{element.name}</td>
-                        <td>{element.gender}</td>
-                        <td>{element.email}</td>
-                        <td>{element.phone}</td>
-                        <td>{element.connection_type}</td>
-                      </tr>
-                    );
-                  })}
-                </thead>
-              </table>
-            </div>
+              <div>
+                  <br/>
+              <Container triggerText={triggerText} onSubmit={onSubmit} />
+              </div>
+            {/*<FormContainer />*/}
           </div>
         </div>
-      </>
-    );
-  }
-}
+        <div className="card">
+          <div className="card-header">
+            <h3>Таблица с данными о клиентах</h3>
+          </div>
+          <div className="card-body">
+            <table className="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Фамилия Имя</th>
+                  <th>E-mail</th>
+                  <th>Номер телефона</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <input type="text" className="form-control"></input>
+                  </td>
+                  <td>
+                    <input type="text" className="form-control"></input>
+                  </td>
+                  <td>
+                    <input type="text" className="form-control"></input>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
-const mapStateToProps = state => {
-  return {
-    users: state.newUserReducer.users,
-  };
+      <Footer />
+    </>
+  );
 };
 
-const mapDispatchToProps = {
-  addUser,
-  getUsers,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Clients);
+export default Clients;
