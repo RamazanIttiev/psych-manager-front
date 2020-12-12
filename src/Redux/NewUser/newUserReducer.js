@@ -4,6 +4,7 @@ import {
   USER_FAILURE,
   USER_CONNECTION,
   USERS_LIST,
+  USERS_LIST_FILTER,
 } from './newUserTypes';
 
 const initialState = {
@@ -51,7 +52,6 @@ export const newUserReducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
-
     default:
       return state;
   }

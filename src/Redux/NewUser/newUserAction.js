@@ -5,6 +5,7 @@ import {
   USER_FAILURE,
   USER_CONNECTION,
   USERS_LIST,
+  USERS_LIST_FILTER,
 } from './newUserTypes';
 
 export const addUser = data => (dispatch, getState) => {
@@ -29,14 +30,13 @@ export const addUser = data => (dispatch, getState) => {
   })
     .then(res => {
       dispatch({ type: USER_SUCCESS, payload: data });
-      console.log(getState().newUserReducer);
     })
     .catch(err => {
       dispatch({ type: USER_FAILURE });
     });
 };
 
-export const getUsers = () => (dispatch, getState) => {
+export const getUsers = data => (dispatch, getState) => {
   Axios({
     method: 'get',
     headers: {
@@ -45,9 +45,29 @@ export const getUsers = () => (dispatch, getState) => {
       'Content-Type': 'application/json',
     },
     url: 'http://127.0.0.1:8000/api/v1/users',
+    params: {
+      filters: {
+        pagination: {
+          page: 1,
+          limit: 15,
+        },
+        sort: {
+          field: 'created_at',
+          order: 0,
+        },
+        fields: {
+          id: data.filters.fields.id,
+          name: data.filters.fields.name,
+          email: data.filters.fields.email,
+          phone: data.filters.fields.phone,
+          connection_type: data.filters.fields.connection_type,
+          session_date: data.filters.fields.session_date,
+        },
+      },
+    },
   })
     .then(res => {
-      console.log(res.data.data.users);
+      console.log('from action', data.filters.fields.phone);
       dispatch({ type: USERS_LIST, payload: res.data.data.users });
     })
     .catch(err => {

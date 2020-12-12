@@ -1,16 +1,57 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Sidebar from '../Sidebar/Sidebar';
-import FormContainer from '../FormContainer/FormContainer';
 import { connect } from 'react-redux';
 import { addUser, getUsers } from '../../Redux/NewUser/newUserAction';
+import Input from '../FormContainer/components/Input';
+import FormContainer from '../FormContainer/FormContainer.jsx';
 
 class Clients extends Component {
+  state = {
+    filters: {
+      pagination: {
+        page: 1,
+        limit: 15,
+      },
+      sort: {
+        field: 'created_at',
+        order: 0,
+      },
+      fields: {
+        id: '',
+        name: '',
+        email: '',
+        phone: '',
+        connection_type: '',
+        session_date: '',
+      },
+    },
+  };
+
   componentDidMount() {
-    this.props.getUsers();
+    this.props.getUsers(this.state);
+    console.log('from CDM', this.state.filters.fields.phone);
   }
 
+  handleInput = e => {
+    let value = e.target.value;
+    let name = e.target.name;
+    this.setState({
+      filters: {
+        fields: {
+          ...this.state.filters.fields,
+          [name]: value,
+        },
+      },
+    });
+    this.props.getUsers(this.state);
+
+    console.log('from handleInput', this.state.filters.fields.phone);
+  };
+
   render() {
+    console.log('from render', this.state.filters.fields.phone);
+
     return (
       <>
         <Header />
@@ -33,26 +74,57 @@ class Clients extends Component {
               <table className="table table-bordered table-hover">
                 <thead>
                   <tr>
-                    <th>Фамилия Имя</th>
-                    <th>Пол</th>
-                    <th>E-mail</th>
-                    <th>Номер</th>
-                    <th>Способ связи</th>
-                    <th>Действия</th>
+                    <th>
+                      <Input
+                        type="text"
+                        name="name"
+                        value={this.state.filters.fields.name}
+                        placeholder={'Введите Имя Фамилию'}
+                        onChange={this.handleInput}
+                      />
+                    </th>
+                    <th>
+                      <Input
+                        type="text"
+                        name="email"
+                        placeholder="Email"
+                        value={this.state.filters.fields.email}
+                        onChange={this.handleInput}
+                      />
+                    </th>
+                    <th>
+                      <Input
+                        type="number"
+                        name="phone"
+                        placeholder="Телефон"
+                        value={this.state.filters.fields.phone}
+                        onChange={this.handleInput}
+                      />
+                    </th>
+                    <th>
+                      <Input
+                        type="text"
+                        name="connection_type_string"
+                        placeholder="Способ связи"
+                        value={this.state.filters.fields.connection_type_string}
+                        onChange={this.handleInput}
+                      />
+                    </th>
+                    {/* <th>Действия</th> */}
                   </tr>
-
+                </thead>
+                <tbody>
                   {this.props.users.map(element => {
                     return (
                       <tr>
                         <td>{element.name}</td>
-                        <td>{element.gender}</td>
                         <td>{element.email}</td>
                         <td>{element.phone}</td>
-                        <td>{element.connection_type}</td>
+                        <td>{element.connection_type_string}</td>
                       </tr>
                     );
                   })}
-                </thead>
+                </tbody>
               </table>
             </div>
           </div>

@@ -17,8 +17,7 @@ class FormContainer extends Component {
       connection_type: [],
       connection_type_string: '',
     },
-
-    gender_list: ['Male', 'Female', 'Others'],
+    gender_list: ['Мужской', 'Женский'],
   };
 
   componentDidMount() {
@@ -43,15 +42,6 @@ class FormContainer extends Component {
 
   handleClearForm = e => {
     e.preventDefault();
-    // this.setState({
-    //   newUser: {
-    //     name: '',
-    //     gender: '',
-    //     email: '',
-    //     phone: '',
-    //     connection_type_string: '',
-    //   },
-    // });
   };
 
   render() {
@@ -61,7 +51,7 @@ class FormContainer extends Component {
           type="text"
           title="Фамилия Имя"
           name="name"
-          value={this.state.newUser.name}
+          // value={this.state.newUser.name}
           placeholder={'Введите Имя Фамилию'}
           onChange={this.handleInput}
         />
@@ -70,7 +60,7 @@ class FormContainer extends Component {
           name="gender"
           placeholder="Выберете пол"
           options={this.state.gender_list}
-          value={this.state.newUser.gender}
+          // value={this.state.newUser.gender}
           handleChange={this.handleInput}
         />
         <Select
@@ -78,7 +68,7 @@ class FormContainer extends Component {
           name="connection_type_string"
           placeholder="Выберите способ связи"
           options={this.props.connection_state}
-          value={this.state.newUser.connection_type_string}
+          // value={this.state.newUser.connection_type_string}
           handleChange={this.handleInput}
         />
         <Input
@@ -86,7 +76,7 @@ class FormContainer extends Component {
           title="Email"
           name="email"
           placeholder="Введите свой E-mail"
-          value={this.state.newUser.email}
+          // value={this.state.newUser.email}
           onChange={this.handleInput}
         />
         <Input
@@ -94,7 +84,7 @@ class FormContainer extends Component {
           title="Phone number"
           name="phone"
           placeholder="Введите свой номер"
-          value={this.state.newUser.phone}
+          // value={this.state.newUser.phone}
           onChange={this.handleInput}
         />
         {/*Submit */}
