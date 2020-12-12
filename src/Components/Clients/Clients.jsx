@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
+import { Container } from './Container';
+import './App.css';
 import Sidebar from '../Sidebar/Sidebar';
 import { connect } from 'react-redux';
 import { addUser, getUsers } from '../../Redux/NewUser/newUserAction';
 import Input from '../FormContainer/components/Input';
-import FormContainer from '../FormContainer/FormContainer.jsx';
+// import FormContainer from '../FormContainer/FormContainer.jsx';
 
 class Clients extends Component {
   state = {
@@ -28,6 +31,14 @@ class Clients extends Component {
     },
   };
 
+  // triggerText = () => {
+  //   const triggerText = 'Добавить';
+  //   return triggerText;
+  // };
+
+  onSubmit = event => {
+    event.preventDefault(event);
+  };
   componentDidMount() {
     this.props.getUsers(this.state);
     console.log('from CDM', this.state.filters.fields.phone);
@@ -62,7 +73,11 @@ class Clients extends Component {
               <div className="card-header">
                 <h3>Завести нового клиента</h3>
               </div>
-              <FormContainer />
+              <div>
+                <br />
+                <Container triggerText={this.triggerText} onSubmit={this.onSubmit} />
+              </div>
+              {/* <FormContainer /> */}
             </div>
           </div>
           {/* Таблица с данными о клиенте */}
@@ -129,6 +144,8 @@ class Clients extends Component {
             </div>
           </div>
         </div>
+
+        <Footer />
       </>
     );
   }
