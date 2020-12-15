@@ -27,13 +27,17 @@ export const login = data => dispatch => {
     },
   })
     .then(res => {
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.data.token });
+      localStorage.setItem('token', res.data.data.token);
+      dispatch({ type: LOGIN_SUCCESS, payload: localStorage.token });
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAILURE });
     });
 };
 
-export const logout = () => dispatch => {
+export const logout = () => (dispatch, getState) => {
   dispatch({ type: LOGOUT });
+  const token = 'token';
+
+  localStorage.removeItem(token, getState().authReducer.token);
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Form } from '../Form';
-import FormContainer from '../../FormContainer/FormContainer.jsx';
+import NewUserForm from '../../NewUserForm/NewUserForm.jsx';
 import FocusTrap from 'focus-trap-react';
 
 export const Modal = ({ onClickOutside, onKeyDown, modalRef, buttonRef, closeModal, onSubmit }) => {
@@ -32,7 +31,7 @@ export const Modal = ({ onClickOutside, onKeyDown, modalRef, buttonRef, closeMod
             </svg>
           </button>
           <div className="modal-body">
-            <FormContainer onSubmit={onSubmit} />
+            <NewUserForm onSubmit={onSubmit} />
           </div>
         </div>
       </aside>

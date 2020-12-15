@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../Header/Header.jsx';
 import Sidebar from '../Sidebar/Sidebar.jsx';
 
-class LoggedIN extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <>
@@ -16,4 +16,4 @@ class LoggedIN extends React.Component {
   }
 }
 
-export default LoggedIN;
+export default Home;

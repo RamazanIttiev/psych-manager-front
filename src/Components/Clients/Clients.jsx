@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import { Container } from './Container';
 import './App.css';
 import Sidebar from '../Sidebar/Sidebar';
 import { connect } from 'react-redux';
-import { addUser, getUsers } from '../../Redux/NewUser/newUserAction';
-import Input from '../FormContainer/components/Input';
-// import FormContainer from '../FormContainer/FormContainer.jsx';
+import { addUser, getUsers, getConnectionType } from '../../Redux/NewUser/newUserAction';
+import Input from '../UI/Input';
+import Select from '../UI/Select';
 
 class Clients extends Component {
   state = {
@@ -31,18 +30,27 @@ class Clients extends Component {
     },
   };
 
-  // triggerText = () => {
-  //   const triggerText = 'Добавить';
-  //   return triggerText;
-  // };
-
   onSubmit = event => {
     event.preventDefault(event);
   };
+
   componentDidMount() {
     this.props.getUsers(this.state);
-    console.log('from CDM', this.state.filters.fields.phone);
+    this.props.getConnectionType();
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.filters.fields != prevState.filters.fields) {
+      this.props.getUsers(this.state);
+    }
+  }
+
+  showModal = () => {
+    this.setState({ isShown: true }, () => {
+      this.closeButton.focus();
+    });
+    this.toggleScrollLock();
+  };
 
   handleInput = e => {
     let value = e.target.value;
@@ -56,13 +64,9 @@ class Clients extends Component {
       },
     });
     this.props.getUsers(this.state);
-
-    console.log('from handleInput', this.state.filters.fields.phone);
   };
 
   render() {
-    console.log('from render', this.state.filters.fields.phone);
-
     return (
       <>
         <Header />
@@ -77,7 +81,6 @@ class Clients extends Component {
                 <br />
                 <Container triggerText={this.triggerText} onSubmit={this.onSubmit} />
               </div>
-              {/* <FormContainer /> */}
             </div>
           </div>
           {/* Таблица с данными о клиенте */}
@@ -92,8 +95,8 @@ class Clients extends Component {
                     <th>
                       <Input
                         type="text"
+                        title="Фамилия Имя"
                         name="name"
-                        value={this.state.filters.fields.name}
                         placeholder={'Введите Имя Фамилию'}
                         onChange={this.handleInput}
                       />
@@ -101,15 +104,16 @@ class Clients extends Component {
                     <th>
                       <Input
                         type="text"
+                        title="Email"
                         name="email"
                         placeholder="Email"
-                        value={this.state.filters.fields.email}
                         onChange={this.handleInput}
                       />
                     </th>
                     <th>
                       <Input
                         type="number"
+                        title="Телефон"
                         name="phone"
                         placeholder="Телефон"
                         value={this.state.filters.fields.phone}
@@ -117,15 +121,35 @@ class Clients extends Component {
                       />
                     </th>
                     <th>
-                      <Input
+                      <Select
                         type="text"
-                        name="connection_type_string"
+                        title="Способ связи"
+                        name="connection_type"
                         placeholder="Способ связи"
-                        value={this.state.filters.fields.connection_type_string}
+                        options={this.props.connection_type}
                         onChange={this.handleInput}
                       />
                     </th>
-                    {/* <th>Действия</th> */}
+                    <th>
+                      <div className="form-group">
+                        <label>Date and time range:</label>
+                        <div className="input-group">
+                          <div className="input-group-prepend">
+                            <span className="input-group-text">
+                              <i className="far fa-clock" />
+                            </span>
+                          </div>
+                          <input
+                            type="text"
+                            name="session_date"
+                            className="form-control float-right"
+                            onChange={this.handleInput}
+                            id="reservationtime"
+                          />
+                        </div>
+                      </div>
+                    </th>
+                    <th style={edit_icons}>Действия</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -136,6 +160,15 @@ class Clients extends Component {
                         <td>{element.email}</td>
                         <td>{element.phone}</td>
                         <td>{element.connection_type_string}</td>
+                        <td></td>
+                        <td style={icons}>
+                          <a className="btn btn-app" style={btn}>
+                            <i class="fas fa-user-edit" style={btn_icon}></i>
+                          </a>
+                          <a className="btn btn-app" style={btn}>
+                            <i class="fas fa-user-slash" style={btn_icon}></i>
+                          </a>
+                        </td>
                       </tr>
                     );
                   })}
@@ -144,22 +177,45 @@ class Clients extends Component {
             </div>
           </div>
         </div>
-
-        <Footer />
       </>
     );
   }
 }
 
+const edit_icons = {
+  verticalAlign: 'unset',
+};
+
+const icons = {
+  display: 'flex',
+  justifyContent: 'space-between',
+};
+
+const btn = {
+  margin: 0,
+  background: 'none',
+  height: '30px',
+  minWidth: '30px',
+  border: 'none',
+  padding: '5px',
+};
+
+const btn_icon = {
+  fontSize: '18px',
+};
+
 const mapStateToProps = state => {
   return {
     users: state.newUserReducer.users,
+    connection_type: state.newUserReducer.connection_type,
+    token: state.authReducer.token,
   };
 };
 
 const mapDispatchToProps = {
   addUser,
   getUsers,
+  getConnectionType,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);

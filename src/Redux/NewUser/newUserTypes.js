@@ -3,4 +3,4 @@ export const USER_SUCCESS = 'USER_SUCCESS';
 export const USER_FAILURE = 'USER_FAILURE';
 export const USER_CONNECTION = 'USER_CONNECTION';
 export const USERS_LIST = 'USERS_LIST';
-export const USERS_LIST_FILTER = 'USERS_LIST_FILTER';
+export const USERS_LIST_EMPTY = 'USERS_LIST_EMPTY';

@@ -5,7 +5,7 @@ import {
   USER_FAILURE,
   USER_CONNECTION,
   USERS_LIST,
-  USERS_LIST_FILTER,
+  USERS_LIST_EMPTY,
 } from './newUserTypes';
 
 export const addUser = data => (dispatch, getState) => {
@@ -67,11 +67,10 @@ export const getUsers = data => (dispatch, getState) => {
     },
   })
     .then(res => {
-      console.log('from action', data.filters.fields.phone);
       dispatch({ type: USERS_LIST, payload: res.data.data.users });
     })
     .catch(err => {
-      console.log(err);
+      dispatch({ type: USERS_LIST_EMPTY, payload: [] });
     });
 };
 
@@ -86,8 +85,7 @@ export const getConnectionType = () => (dispatch, getState) => {
     url: 'http://127.0.0.1:8000/api/v1/static-data/get-connection-types',
   })
     .then(res => {
-      const myArr = res.data.data.connection_types;
-      dispatch({ type: USER_CONNECTION, payload: myArr });
+      dispatch({ type: USER_CONNECTION, payload: res.data.data.connection_types });
     })
     .catch(err => {});
 };
