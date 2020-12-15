@@ -4,6 +4,7 @@ import {
   USER_FAILURE,
   USER_CONNECTION,
   USERS_LIST,
+  USERS_LIST_EMPTY,
 } from './newUserTypes';
 
 const initialState = {
@@ -14,7 +15,6 @@ const initialState = {
   phone: '',
   role: '',
   connection_type: [],
-  connection_type_string: '',
   users: [],
 };
 
@@ -51,7 +51,11 @@ export const newUserReducer = (state = initialState, action) => {
         ...state,
         users: action.payload,
       };
-
+    case USERS_LIST_EMPTY:
+      return {
+        ...state,
+        users: action.payload,
+      };
     default:
       return state;
   }

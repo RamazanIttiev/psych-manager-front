@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from './authTypes';
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, SET_TOKEN } from './authTypes';
 
 /**
  *
@@ -27,7 +27,8 @@ export const login = data => dispatch => {
     },
   })
     .then(res => {
-      dispatch({ type: LOGIN_SUCCESS, payload: res.data.data.token });
+      localStorage.setItem('token', res.data.data.token);
+      dispatch({ type: LOGIN_SUCCESS, payload: localStorage.token });
     })
     .catch(err => {
       dispatch({ type: LOGIN_FAILURE });
@@ -36,4 +37,10 @@ export const login = data => dispatch => {
 
 export const logout = () => dispatch => {
   dispatch({ type: LOGOUT });
+  localStorage.setItem('token', null);
+};
+
+export const setToken = () => dispatch => {
+  const token = localStorage.getItem('token');
+  dispatch({ type: SET_TOKEN, payload: token });
 };
