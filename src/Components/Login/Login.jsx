@@ -24,7 +24,7 @@ class Login extends Component {
   };
 
   render() {
-    if (this.props.loggedIn) {
+    if (this.props.token) {
       return <Redirect to="/" />;
     }
     return (
@@ -103,7 +103,7 @@ class Login extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.authReducer.isLoading,
-    loggedIn: state.authReducer.loggedIn,
+    token: state.authReducer.token,
   };
 };
 

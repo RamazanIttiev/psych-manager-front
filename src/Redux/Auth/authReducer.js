@@ -1,8 +1,7 @@
-import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT } from './authTypes';
+import { LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, SET_TOKEN } from './authTypes';
 
 const initialState = {
   isLoading: false,
-  loggedIn: false,
   token: null,
 };
 
@@ -22,7 +21,6 @@ export const authReducer = (state = initialState, action) => {
       return (state = {
         ...state,
         isLoading: false,
-        loggedIn: true,
         token: action.payload,
       });
     case LOGIN_FAILURE:
@@ -33,8 +31,11 @@ export const authReducer = (state = initialState, action) => {
     case LOGOUT:
       return {
         ...state,
-        loggedIn: false,
         token: null,
+      };
+    case SET_TOKEN:
+      return {
+        token: action.payload,
       };
     default:
       return state;

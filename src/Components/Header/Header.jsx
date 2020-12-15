@@ -9,7 +9,7 @@ class Header extends Component {
   };
 
   render() {
-    if (this.props.loggedIn === false) {
+    if (this.props.token === null) {
       return <Redirect to="/login" />;
     }
     return (
@@ -44,7 +44,7 @@ class Header extends Component {
 const mapStateToProps = state => {
   return {
     isLoading: state.authReducer.isLoading,
-    loggedIn: state.authReducer.loggedIn,
+    token: state.authReducer.token,
   };
 };
 

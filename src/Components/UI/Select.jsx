@@ -5,7 +5,7 @@ const Select = props => {
     <div className="form-group">
       <label htmlFor={props.name}> {props.title} </label>
       <select id={props.name} name={props.name} onChange={props.onChange} className="form-control">
-        <option value="" disabled defaultValue>
+        <option value="" disabled selected>
           {props.placeholder}
         </option>
         {props.options.map(option => {
