@@ -1,21 +1,20 @@
 import {
   USER_REQUEST,
   USER_SUCCESS,
-  USER_FAILURE,
   USER_CONNECTION,
+  USER_GENDER,
   USERS_LIST,
   USERS_LIST_EMPTY,
+  CURRENT_USER,
 } from './newUserTypes';
 
 const initialState = {
   isLoading: false,
-  name: '',
-  gender: '',
-  email: '',
-  phone: '',
-  role: '',
+  gender: [],
   connection_type: [],
   users: [],
+  isUserAdded: false,
+  current_user: {},
 };
 
 export const newUserReducer = (state = initialState, action) => {
@@ -29,22 +28,17 @@ export const newUserReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        name: action.payload.newUser.name,
-        gender: action.payload.newUser.gender,
-        email: action.payload.newUser.email,
-        phone: action.payload.newUser.phone,
-        role: action.payload.newUser.role,
-        connection_type: action.payload.newUser.connection_type,
-        connection_type_string: action.payload.newUser.connection_type_string,
-      };
-    case USER_FAILURE:
-      return {
-        ...state,
+        isUserAdded: true,
       };
     case USER_CONNECTION:
       return {
         ...state,
         connection_type: action.payload,
+      };
+    case USER_GENDER:
+      return {
+        ...state,
+        gender: action.payload,
       };
     case USERS_LIST:
       return {
@@ -55,6 +49,11 @@ export const newUserReducer = (state = initialState, action) => {
       return {
         ...state,
         users: action.payload,
+      };
+    case CURRENT_USER:
+      return {
+        ...state,
+        current_user: action.payload,
       };
     default:
       return state;

@@ -86,11 +86,6 @@ class Login extends Component {
                   {/* /.col */}
                 </div>
               </form>
-              <p className="mb-0">
-                <NavLink to="/register" className="text-center">
-                  Register a new membership
-                </NavLink>
-              </p>
             </div>
             {/* /.login-card-body */}
           </div>

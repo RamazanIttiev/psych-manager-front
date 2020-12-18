@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
-import { Container } from './Container';
-import './App.css';
 import Sidebar from '../Sidebar/Sidebar';
-import { connect } from 'react-redux';
-import { addUser, getUsers, getConnectionType } from '../../Redux/NewUser/newUserAction';
 import Input from '../UI/Input';
 import Select from '../UI/Select';
+import { connect } from 'react-redux';
+import {
+  addUser,
+  getUser,
+  getUsersList,
+  getConnectionType,
+} from '../../Redux/NewUser/newUserAction';
+import { NavLink } from 'react-router-dom';
+import './App.css';
 
 class Clients extends Component {
   state = {
@@ -30,27 +35,16 @@ class Clients extends Component {
     },
   };
 
-  onSubmit = event => {
-    event.preventDefault(event);
-  };
-
   componentDidMount() {
-    this.props.getUsers(this.state);
+    this.props.getUsersList(this.state);
     this.props.getConnectionType();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.filters.fields != prevState.filters.fields) {
-      this.props.getUsers(this.state);
+      this.props.getUsersList(this.state);
     }
   }
-
-  showModal = () => {
-    this.setState({ isShown: true }, () => {
-      this.closeButton.focus();
-    });
-    this.toggleScrollLock();
-  };
 
   handleInput = e => {
     let value = e.target.value;
@@ -63,31 +57,43 @@ class Clients extends Component {
         },
       },
     });
-    this.props.getUsers(this.state);
+    this.props.getUsersList(this.state);
+  };
+
+  clearFilter = () => {
+    this.setState({
+      filters: {
+        fields: {
+          ...this.state.filters.fields,
+          id: '',
+          name: '',
+          email: '',
+          phone: '',
+          connection_type: '',
+          session_date: '',
+        },
+      },
+    });
+  };
+
+  edit = element => {
+    this.props.getUser(element);
   };
 
   render() {
-    console.log('a');
     return (
       <>
         <Header />
         <Sidebar />
         <div class="content-wrapper">
-          <div className="card card-light">
-            <div className="card-body">
-              <div className="card-header">
-                <h3>Завести нового клиента</h3>
-              </div>
-              <div>
-                <br />
-                <Container triggerText={this.triggerText} onSubmit={this.onSubmit} />
-              </div>
-            </div>
-          </div>
-          {/* Таблица с данными о клиенте */}
           <div className="card">
-            <div className="card-header">
+            <div className="card-header table_header">
               <h3>Таблица с данными о клиентах</h3>
+              <NavLink to="/adduser">
+                <button type="button" class="btn btn-outline-primary add_client">
+                  Добавить клиента
+                </button>
+              </NavLink>
             </div>
             <div className="card-body">
               <table className="table table-bordered table-hover">
@@ -98,16 +104,18 @@ class Clients extends Component {
                         type="text"
                         title="Фамилия Имя"
                         name="name"
+                        value={this.state.filters.fields.name}
                         placeholder={'Введите Имя Фамилию'}
                         onChange={this.handleInput}
                       />
                     </th>
                     <th>
                       <Input
-                        type="text"
+                        type="email"
                         title="Email"
                         name="email"
                         placeholder="Email"
+                        value={this.state.filters.fields.email}
                         onChange={this.handleInput}
                       />
                     </th>
@@ -123,7 +131,7 @@ class Clients extends Component {
                     </th>
                     <th>
                       <Select
-                        type="text"
+                        type="select"
                         title="Способ связи"
                         name="connection_type"
                         placeholder="Способ связи"
@@ -131,26 +139,18 @@ class Clients extends Component {
                         onChange={this.handleInput}
                       />
                     </th>
-                    <th>
-                      <div className="form-group">
-                        <label>Date and time range:</label>
-                        <div className="input-group">
-                          <div className="input-group-prepend">
-                            <span className="input-group-text">
-                              <i className="far fa-clock" />
-                            </span>
-                          </div>
-                          <input
-                            type="text"
-                            name="session_date"
-                            className="form-control float-right"
-                            onChange={this.handleInput}
-                            id="reservationtime"
-                          />
-                        </div>
+                    <th className="edit">
+                      Действия
+                      <div>
+                        <button
+                          onClick={this.clearFilter}
+                          type="button"
+                          class="btn btn-outline-primary clear_filter"
+                        >
+                          <i class="fas fa-times"></i>
+                        </button>
                       </div>
                     </th>
-                    <th style={edit_icons}>Действия</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -161,14 +161,18 @@ class Clients extends Component {
                         <td>{element.email}</td>
                         <td>{element.phone}</td>
                         <td>{element.connection_type_string}</td>
-                        <td></td>
-                        <td style={icons}>
-                          <a className="btn btn-app" style={btn}>
-                            <i class="fas fa-user-edit" style={btn_icon}></i>
-                          </a>
-                          <a className="btn btn-app" style={btn}>
-                            <i class="fas fa-user-slash" style={btn_icon}></i>
-                          </a>
+                        {/* <td></td> */}
+                        <td className="edit_icons">
+                          <NavLink
+                            to="/adduser"
+                            className="btn btn-app edit_btn_link"
+                            onClick={e => this.edit(element, e)}
+                          >
+                            <i class="fas fa-user-edit edit_btn_icon"></i>
+                          </NavLink>
+                          <NavLink to="/deleteuser" className="btn btn-app edit_btn_link">
+                            <i class="fas fa-user-slash edit_btn_icon"></i>
+                          </NavLink>
                         </td>
                       </tr>
                     );
@@ -183,28 +187,6 @@ class Clients extends Component {
   }
 }
 
-const edit_icons = {
-  verticalAlign: 'unset',
-};
-
-const icons = {
-  display: 'flex',
-  justifyContent: 'space-between',
-};
-
-const btn = {
-  margin: 0,
-  background: 'none',
-  height: '30px',
-  minWidth: '30px',
-  border: 'none',
-  padding: '5px',
-};
-
-const btn_icon = {
-  fontSize: '18px',
-};
-
 const mapStateToProps = state => {
   return {
     users: state.newUserReducer.users,
@@ -215,7 +197,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   addUser,
-  getUsers,
+  getUser,
+  getUsersList,
   getConnectionType,
 };
 

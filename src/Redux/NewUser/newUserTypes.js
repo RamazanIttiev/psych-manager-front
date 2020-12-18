@@ -2,5 +2,7 @@ export const USER_REQUEST = 'USER_REQUEST';
 export const USER_SUCCESS = 'USER_SUCCESS';
 export const USER_FAILURE = 'USER_FAILURE';
 export const USER_CONNECTION = 'USER_CONNECTION';
+export const USER_GENDER = 'USER_GENDER';
 export const USERS_LIST = 'USERS_LIST';
 export const USERS_LIST_EMPTY = 'USERS_LIST_EMPTY';
+export const CURRENT_USER = 'CURRENT_USER';

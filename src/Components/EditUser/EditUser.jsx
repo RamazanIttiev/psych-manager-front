@@ -1,49 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
-/* Import Components */
-import Input from '../UI/Input';
-import Select from '../UI/Select';
-import Button from '../UI/Button';
-import { addUser, getConnectionType } from '../../Redux/NewUser/newUserAction';
-
-class NewUserForm extends Component {
-  state = {
-    newUser: {
-      name: '',
-      gender: '',
-      email: '',
-      phone: '',
-      connection_type: '',
-    },
-    gender_list: ['Мужской', 'Женский'],
-  };
-
-  componentDidMount() {
-    this.props.getConnectionType();
-  }
-
-  handleInput = e => {
-    let value = e.target.value;
-    let name = e.target.name;
-    this.setState(prevState => ({
-      newUser: {
-        ...prevState.newUser,
-        [name]: value,
-      },
-    }));
-    console.log(this.state);
-  };
-
-  handleFormSubmit = e => {
-    e.preventDefault();
-    this.props.addUser(this.state);
-  };
-
-  handleClearForm = e => {
-    e.preventDefault();
-  };
-
+class EditUser extends Component {
   render() {
     return (
       <form className="container-fluid" onSubmit={this.handleFormSubmit}>
@@ -102,21 +59,4 @@ class NewUserForm extends Component {
   }
 }
 
-const buttonStyle = {
-  margin: '10px 10px 10px 10px',
-};
-
-const mapStateToProps = state => {
-  return {
-    isLoading: state.newUserReducer.isLoading,
-    connection_type: state.newUserReducer.connection_type,
-    token: state.authReducer.token,
-  };
-};
-
-const mapDispatchToProps = {
-  addUser,
-  getConnectionType,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewUserForm);
+export default EditUser;

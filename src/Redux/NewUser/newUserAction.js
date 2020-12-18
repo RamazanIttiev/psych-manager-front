@@ -2,10 +2,11 @@ import Axios from 'axios';
 import {
   USER_REQUEST,
   USER_SUCCESS,
-  USER_FAILURE,
   USER_CONNECTION,
+  USER_GENDER,
   USERS_LIST,
   USERS_LIST_EMPTY,
+  CURRENT_USER,
 } from './newUserTypes';
 
 export const addUser = data => (dispatch, getState) => {
@@ -19,24 +20,23 @@ export const addUser = data => (dispatch, getState) => {
     },
     url: 'http://127.0.0.1:8000/api/v1/users',
     data: {
-      name: data.newUser.name,
-      email: data.newUser.email,
-      phone: data.newUser.phone,
+      name: data.name,
+      email: data.email,
+      phone: data.phone,
       role: 0,
-      gender: 0,
-      connection_type: 1,
-      connection_type_string: data.newUser.connection_type_string,
+      gender: data.gender,
+      connection_type: data.connection_type,
     },
   })
     .then(res => {
-      dispatch({ type: USER_SUCCESS, payload: data });
+      dispatch({ type: USER_SUCCESS });
     })
     .catch(err => {
-      dispatch({ type: USER_FAILURE });
+      console.log(err);
     });
 };
 
-export const getUsers = data => (dispatch, getState) => {
+export const getUsersList = data => (dispatch, getState) => {
   Axios({
     method: 'get',
     headers: {
@@ -74,6 +74,49 @@ export const getUsers = data => (dispatch, getState) => {
     });
 };
 
+export const getUser = data => (dispatch, getState) => {
+  Axios({
+    method: 'get',
+    headers: {
+      'X-API-KEY': getState().authReducer.token,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    url: `http://127.0.0.1:8000/api/v1/users/${data.id}`,
+  })
+    .then(res => {
+      dispatch({ type: CURRENT_USER, payload: data });
+      console.log(data);
+    })
+    .catch(err => {});
+};
+
+export const editUser = data => (dispatch, getState) => {
+  Axios({
+    method: 'put',
+    headers: {
+      'X-API-KEY': getState().authReducer.token,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    url: 'http://127.0.0.1:8000/api/v1/users',
+    userData: {
+      id: data.filters.fields.id,
+      name: data.filters.fields.name,
+      email: data.filters.fields.email,
+      phone: data.filters.fields.phone,
+      connection_type: data.filters.fields.connection_type,
+      session_date: data.filters.fields.session_date,
+    },
+  })
+    .then(res => {
+      dispatch({ type: USERS_LIST, payload: res.data.data.users });
+    })
+    .catch(err => {
+      dispatch({ type: USERS_LIST_EMPTY, payload: [] });
+    });
+};
+
 export const getConnectionType = () => (dispatch, getState) => {
   Axios({
     method: 'get',
@@ -86,6 +129,22 @@ export const getConnectionType = () => (dispatch, getState) => {
   })
     .then(res => {
       dispatch({ type: USER_CONNECTION, payload: res.data.data.connection_types });
+    })
+    .catch(err => {});
+};
+
+export const getGender = () => (dispatch, getState) => {
+  Axios({
+    method: 'get',
+    headers: {
+      'X-API-KEY': getState().authReducer.token,
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    url: 'http://127.0.0.1:8000/api/v1/static-data/get-gender-list',
+  })
+    .then(res => {
+      dispatch({ type: USER_GENDER, payload: res.data.data.gender_list });
     })
     .catch(err => {});
 };

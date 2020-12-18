@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Input = props => {
-  //console.log(props.value);
   return (
     <div className="form-group">
       <label htmlFor={props.name} className="form-label">
@@ -12,9 +11,9 @@ const Input = props => {
         id={props.name}
         name={props.name}
         type={props.inputType}
-        value={props.value}
-        onChange={props.handleChange}
+        onChange={props.onChange}
         placeholder={props.placeholder}
+        autocomplete="off"
         {...props}
       />
     </div>

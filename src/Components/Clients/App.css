@@ -1,4 +1,4 @@
-body {
+/* body {
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
@@ -97,4 +97,41 @@ p.lorem-text {
 .scroll-lock {
   overflow: hidden;
   margin-right: 17px;
+} */
+
+.edit {
+  vertical-align: unset !important;
+}
+
+.edit_icons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.edit_btn_link {
+  margin: 0;
+  background: none;
+  height: 30px;
+  min-width: 30px;
+  border: none;
+  padding: 5px;
+}
+
+.edit_btn_icon {
+  font-size: 18px !important;
+}
+
+.table_header {
+  display: flex !important;
+  justify-content: space-between !important;
+}
+
+.add_client {
+  position: absolute !important;
+  right: 20px !important;
+}
+
+.clear_filter {
+  margin-left: 20px;
+  margin-top: 5px;
 }
