@@ -13,11 +13,11 @@ import { Link, NavLink, Redirect } from 'react-router-dom';
 class AddUser extends Component {
   state = {
     newUser: {
-      name: '',
-      gender: '',
-      email: '',
-      phone: '',
-      connection_type: '',
+      name: this.props.current_user.name,
+      gender: this.props.current_user.gender,
+      email: this.props.current_user.email,
+      phone: this.props.current_user.phone,
+      connection_type: this.props.current_user.connection_type,
     },
   };
 
@@ -74,7 +74,7 @@ class AddUser extends Component {
                 type="text"
                 title="Фамилия Имя"
                 name="name"
-                value={this.props.current_user.name}
+                value={this.state.newUser.name}
                 placeholder={'Введите ваше имя'}
                 onChange={this.handleInput}
               />

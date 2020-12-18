@@ -85,8 +85,8 @@ export const getUser = data => (dispatch, getState) => {
     url: `http://127.0.0.1:8000/api/v1/users/${data.id}`,
   })
     .then(res => {
-      dispatch({ type: CURRENT_USER, payload: data });
-      console.log(data);
+      dispatch({ type: CURRENT_USER, payload: res.data.data.user });
+      console.log(res.data);
     })
     .catch(err => {});
 };
